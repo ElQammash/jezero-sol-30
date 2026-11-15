@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { assignJobs } from '../game/crewJobs';
 import { availableTasks, commsDelayMinutes, forecast, OPTION_PREVIEWS, STAGE_ORDER, type Cause, type Task } from '../engine';
 import { FACT_SOURCES } from '../game/facts';
 import { playRover, sfx } from '../game/sound';
@@ -126,6 +127,7 @@ export function Computer() {
   const close = () => useGame.getState().openModal(null);
   const tasks = availableTasks(game);
   const fc = forecast(game);
+  const jobs = assignJobs(game);
   const toggle = (task: Task) => {
     sfx('tick');
     const has = game.tasks.includes(task);
@@ -148,6 +150,7 @@ export function Computer() {
             <button key={task} type="button" className={`task ${game.tasks.includes(task) ? 'on' : ''}`} onClick={() => toggle(task)}>
               <b>{t(`tasks.${task}.name`)}</b>
               <small>{t(`tasks.${task}.desc`)}</small>
+              {jobs[task] && <em className="who">→ {t(`names.${jobs[task]}`)} · {t(`roles.${jobs[task]}`)}</em>}
             </button>
           ))}
         </div>

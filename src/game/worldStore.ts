@@ -29,4 +29,4 @@ export const useWorld = create<WorldState>((set) => ({
   setDust: (d) => set({ dust: d }),
 }));
 
-if (import.meta.env.DEV) (window as unknown as { __world: typeof useWorld }).__world = useWorld;
+if (import.meta.env.DEV && typeof window !== 'undefined') (window as unknown as { __world: typeof useWorld }).__world = useWorld;

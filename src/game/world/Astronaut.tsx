@@ -10,10 +10,11 @@ export interface AstronautHandle {
 interface Props {
   suitColor?: string;
   stripe?: string;
+  children?: React.ReactNode;
 }
 
 /** A detailed procedural EVA suit astronaut with a simple walk cycle (no external model needed). */
-const Astronaut = forwardRef<AstronautHandle, Props>(function Astronaut({ suitColor = '#f2efe9', stripe = '#d9622b' }, ref) {
+const Astronaut = forwardRef<AstronautHandle, Props>(function Astronaut({ suitColor = '#f2efe9', stripe = '#d9622b', children }, ref) {
   const root = useRef<THREE.Group>(null!);
   const hips = useRef<THREE.Group>(null!);
   const torso = useRef<THREE.Group>(null!);
@@ -165,6 +166,7 @@ const Astronaut = forwardRef<AstronautHandle, Props>(function Astronaut({ suitCo
           </group>
         </group>
       </group>
+      {children}
     </group>
   );
 });

@@ -299,4 +299,4 @@ export const useGame = create<Store>((set, get) => {
   };
 });
 
-if (import.meta.env.DEV) (window as unknown as { __game: typeof useGame }).__game = useGame;
+if (import.meta.env.DEV && typeof window !== 'undefined') (window as unknown as { __game: typeof useGame }).__game = useGame;
