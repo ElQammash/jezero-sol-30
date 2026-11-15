@@ -3,7 +3,7 @@ import { NASA, type DataEntry } from '../data/nasa';
 import { analyzeMission, retryFromStage } from './analysis';
 import { earthMarsDistanceKm, lightDelayMinutes } from './orbit';
 import { Rng } from './rng';
-import { createMission, endSol, forecast, meters, PER_CREW, setSettings, setTasks, solarKWh, STAGE_ORDER, STAGE_SOLS, starsFor } from './sim';
+import { createMission, endSol, forecast, liveMeters, meters, PER_CREW, setSettings, setTasks, solarKWh, STAGE_ORDER, STAGE_SOLS, starsFor } from './sim';
 import { chooseOption, commsDelayMinutes, optionsFor, shelterSeconds } from './stages';
 import { carefulDay, fixedPath, lookAhead, playOut } from './strategies';
 import { TUNING } from './tuning';
@@ -209,5 +209,32 @@ describe('winning and losing', () => {
       expect(r.pendingStage).toBe(d.decisive.stage);
       expect(r.status).toBe('playing');
     }
+  });
+});
+
+describe('live sol meters', () => {
+  it('start at the current meters and land exactly on the endSol() result', () => {
+    let s = toNextStage(createMission(7));
+    s = choose(s, 'A');
+    for (let i = 0; i < 12 && s.status === 'playing'; i++) {
+      if (s.pendingStage) s = choose(s, 'B', true);
+      if (s.status !== 'playing') break;
+      s = carefulDay(s);
+      expect(liveMeters(s, 0)).toEqual(meters(s));
+      const next = endSol(s);
+      expect(liveMeters(s, 1)).toEqual(meters(next));
+      const mid = liveMeters(s, 0.5);
+      for (const k of ['power', 'oxygen', 'food', 'shield'] as const) {
+        expect(mid[k]).toBeGreaterThanOrEqual(Math.min(meters(s)[k], meters(next)[k]));
+        expect(mid[k]).toBeLessThanOrEqual(Math.max(meters(s)[k], meters(next)[k]));
+      }
+      s = next;
+    }
+  });
+  it('react at once to a change of orders', () => {
+    const s = endSol(choose(toNextStage(createMission(3)), 'A'));
+    const on = liveMeters(setSettings(s, { heatingLow: false }), 1);
+    const off = liveMeters(setSettings(s, { heatingLow: true }), 1);
+    expect(off.power).toBeGreaterThanOrEqual(on.power);
   });
 });

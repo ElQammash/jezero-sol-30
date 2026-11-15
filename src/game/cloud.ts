@@ -8,7 +8,7 @@ const TOKEN_KEY = 'jezero-token';
 const USER_KEY = 'jezero-user';
 
 export interface CloudBlob {
-  version: 1;
+  version: 1 | 2;
   updatedAt: number;
   [k: string]: unknown;
 }

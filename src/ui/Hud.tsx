@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { meters, solsLeft, STAGE_ORDER, type GameState } from '../engine';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { liveMeters, meters, solPreview, solsLeft, STAGE_ORDER, type GameState, type Meters } from '../engine';
 import { METER_SOURCES } from '../game/facts';
 import { input, setTouchMove } from '../game/input';
 import { sfx } from '../game/sound';
 import { currentTarget, SPOTS, spotPosition, type Spot } from '../game/spots';
-import { useGame } from '../game/store';
+import { marsClock, secondsLeft, useGame, type Speed } from '../game/store';
+import { causeText } from './Modals';
 import { useT } from '../game/useT';
 import { useWorld } from '../game/worldStore';
 import SourceButton from './SourceButton';
@@ -13,14 +14,16 @@ const ICON = { power: '⚡', oxygen: '🫁', food: '🥔', shield: '🛡️' } a
 type MeterKey = keyof typeof ICON;
 
 /** Small square meter; tap/click for details and the NASA source. */
-function MeterChip({ k, value, sub, open, onToggle }: { k: MeterKey; value: number; sub?: string; open: boolean; onToggle: () => void }) {
+function MeterChip({ k, value, sub, open, onToggle, trend }: { k: MeterKey; value: number; sub?: string; open: boolean; onToggle: () => void; trend?: 'up' | 'down' }) {
   const { t } = useT();
   const level = value < 20 ? 'danger' : value < 40 ? 'warn' : 'ok';
   return (
     <div className="chip-wrap">
       <button type="button" className={`mchip ${level} ${open ? 'open' : ''}`} onClick={onToggle} aria-label={`${t(`meters.${k}`)} ${value}%`}>
         <span className="mchip-icon">{ICON[k]}</span>
-        <span className="mchip-val">{value}%</span>
+        <span className="mchip-val">
+          {value}%{trend && <i className={`trend ${trend}`}>{trend === 'up' ? '▲' : '▼'}</i>}
+        </span>
         <span className="mchip-bar">
           <span style={{ inlineSize: `${Math.max(3, Math.min(100, value))}%` }} />
         </span>
@@ -62,6 +65,113 @@ function CrewColumn({ game }: { game: GameState }) {
       ))}
     </div>
   );
+}
+
+/** Sol number, Mars clock with a day/night ring, time left, and speed controls. */
+function SolClock({ game }: { game: GameState }) {
+  const { t, n } = useT();
+  const clock = useGame((s) => s.clock);
+  const speed = useGame((s) => s.speed);
+  const sleeping = useGame((s) => s.sleeping);
+  const running = useGame((s) => s.clockRunning());
+  const setSpeed = useGame((s) => s.setSpeed);
+  const [h, m] = marsClock(clock);
+  const left = Math.ceil(secondsLeft(clock));
+  const stageNo = STAGE_ORDER.findIndex((s) => !game.choices[s]);
+  const night = h >= 19 || h < 6;
+  const pad = (x: number) => n(x).padStart(2, n(0));
+  return (
+    <div className="sol-clock">
+      <div className={`ring ${night ? 'night' : ''}`} style={{ ['--p' as string]: `${clock * 360}deg` }} title={t('hud.marsTime')}>
+        <span>{night ? '🌙' : '☀'}</span>
+      </div>
+      <div className="sol-mini">
+        <b>{t('common.sol', { n: game.sol })}</b>
+        <small className="mars-time">
+          {pad(h)}:{pad(m)} · {t('hud.timeLeft', { t: `${n(Math.floor(left / 60))}:${pad(left % 60)}` })}
+        </small>
+        <small>{stageNo >= 0 ? t('stage.label', { n: stageNo + 1 }) : '✓'}</small>
+      </div>
+      <div className="speed" role="group" aria-label={t('hud.speed')}>
+        {([0, 1, 2, 4] as Speed[]).map((v) => (
+          <button key={v} type="button" className={`spd ${speed === v && !sleeping ? 'on' : ''}`} onClick={() => (sfx('tick'), setSpeed(v))} aria-label={v === 0 ? t('hud.pause') : `${v}x`}>
+            {v === 0 ? '⏸' : `${n(v)}×`}
+          </button>
+        ))}
+        {!running && speed !== 0 && <i className="held">⏸</i>}
+      </div>
+    </div>
+  );
+}
+
+/** What is being done today, how the meters will move by tonight, and what happened last sol. */
+function MissionLog({ game, now, target }: { game: GameState; now: Meters; target: Meters | null }) {
+  const { t, dir } = useT();
+  const clock = useGame((s) => s.clock);
+  const report = game.history.at(-1);
+  const setLog = useGame((s) => s.setLog);
+  const pct = Math.round(clock * 100);
+  const start = meters(game);
+  return (
+    <div className="mission-log" dir={dir}>
+      <div className="log-head">
+        <b>📋 {t('hud.log')}</b>
+        <button type="button" className="x" onClick={() => setLog(false)} aria-label={t('common.close')}>
+          ✕
+        </button>
+      </div>
+      <h4>{t('hud.logToday')}</h4>
+      {game.tasks.length === 0 && <p className="muted">{t('hud.logEmpty')}</p>}
+      <ul>
+        {game.tasks.map((task) => (
+          <li key={task}>
+            <span>{t('hud.taskLine', { task: t(`tasks.${task}.name`), pct })}</span>
+            <span className="pbar">
+              <i style={{ inlineSize: `${pct}%` }} />
+            </span>
+          </li>
+        ))}
+      </ul>
+      {target && (
+        <>
+          <h4>{t('hud.logTonight')}</h4>
+          <ul>
+            {(['power', 'oxygen', 'food', 'shield'] as const)
+              .filter((k) => target[k] !== start[k])
+              .map((k) => (
+                <li key={k} className={target[k] < start[k] ? 'down' : 'up'}>
+                  {ICON[k]} {t('hud.meterLine', { meter: t(`meters.${k}`), from: now[k], to: target[k] })}
+                </li>
+              ))}
+          </ul>
+        </>
+      )}
+      {report && (
+        <>
+          <h4>{t('hud.logLast')}</h4>
+          <ul className="lines">
+            {report.causes.slice(0, 6).map((c, i) => (
+              <li key={i}>{causeText(t, c)}</li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  );
+}
+
+function Toast() {
+  const { t } = useT();
+  const toast = useGame((s) => s.toast);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    if (!toast) return;
+    setShow(true);
+    const id = setTimeout(() => setShow(false), 3500);
+    return () => clearTimeout(id);
+  }, [toast]);
+  if (!toast || !show) return null;
+  return <div className="toast">☀ {t('hud.morning', { n: toast.sol })}</div>;
 }
 
 function Joystick() {
@@ -109,7 +219,9 @@ export default function Hud() {
   const game = useGame((s) => s.game);
   const action = useGame((s) => s.action);
   const modal = useGame((s) => s.modal);
-  const nightfall = useGame((s) => s.nightfall);
+  const sleeping = useGame((s) => s.sleeping);
+  const clock = useGame((s) => s.clock);
+  const logOpen = useGame((s) => s.logOpen);
   const lang = useGame((s) => s.lang);
   const setLang = useGame((s) => s.setLang);
   const muted = useGame((s) => s.muted);
@@ -120,6 +232,7 @@ export default function Hud() {
   const [objOpen, setObjOpen] = useState(true);
   const [nav, setNav] = useState<{ dist: number; angle: number } | null>(null);
   const [helpVisible, setHelpVisible] = useState(true);
+  const [compDist, setCompDist] = useState(0);
 
   const objective = action ? t(`objectives.${action.objective}`) : game.pendingStage ? t('objectives.decide') : t('objectives.explore');
   // a new objective pops open for a few seconds, then folds into a small icon
@@ -143,7 +256,7 @@ export default function Hud() {
       last = now;
       const st = useGame.getState();
       st.tickAction(dt);
-      input.locked = st.modal !== null || st.nightfall > 0;
+      input.locked = st.modal !== null || st.sleeping;
       const p = useWorld.getState().player;
       let best: Spot | null = null;
       for (const s of SPOTS) {
@@ -160,6 +273,8 @@ export default function Hud() {
       }
       if ((navTick += dt) > 0.1) {
         navTick = 0;
+        const cp = spotPosition('computer');
+        setCompDist(Math.round(Math.hypot(cp.x - p.x, cp.z - p.z)));
         const target = currentTarget(st.game, a);
         if (target) {
           const c = spotPosition(target);
@@ -189,25 +304,32 @@ export default function Hud() {
     if (s === 'computer' || (s === 'airlock' && !st.action)) st.openModal('computer');
   };
 
-  const m = meters(game);
+  // meters move live toward the engine's result for this sol (recomputed when orders change)
+  const preview = useMemo(() => {
+    try {
+      return solPreview(game);
+    } catch {
+      return null;
+    }
+  }, [game]);
+  const m = liveMeters(game, clock, preview);
+  const target = preview ? meters(preview) : null;
+  const start = meters(game);
   const left = solsLeft(game);
-  const stageNo = STAGE_ORDER.findIndex((s) => !game.choices[s]);
   const toggle = (k: MeterKey) => setOpenMeter(openMeter === k ? null : k);
-  const free = !game.pendingStage && !action && !modal && nightfall === 0;
+  const free = !game.pendingStage && !action && !modal && !sleeping;
+  const trend = (k: MeterKey) => (target && target[k] !== start[k] ? (target[k] > start[k] ? 'up' : 'down') : undefined);
 
   return (
     <div className="hud" dir={dir}>
       {/* top: sol + four compact meters + settings */}
       <div className="hud-top">
-        <div className="sol-mini">
-          <b>{t('common.sol', { n: game.sol })}</b>
-          <small>{stageNo >= 0 ? t('stage.label', { n: stageNo + 1 }) : '✓'}</small>
-        </div>
+        <SolClock game={game} />
         <div className="mchips">
-          <MeterChip k="power" value={m.power} open={openMeter === 'power'} onToggle={() => toggle('power')} />
-          <MeterChip k="oxygen" value={m.oxygen} sub={t('meters.solsLeft', { n: Math.floor(left.oxygen) })} open={openMeter === 'oxygen'} onToggle={() => toggle('oxygen')} />
-          <MeterChip k="food" value={m.food} sub={t('meters.solsLeft', { n: Math.floor(left.food) })} open={openMeter === 'food'} onToggle={() => toggle('food')} />
-          <MeterChip k="shield" value={m.shield} open={openMeter === 'shield'} onToggle={() => toggle('shield')} />
+          <MeterChip k="power" value={m.power} trend={trend('power')} open={openMeter === 'power'} onToggle={() => toggle('power')} />
+          <MeterChip k="oxygen" value={m.oxygen} trend={trend('oxygen')} sub={t('meters.solsLeft', { n: Math.floor(left.oxygen) })} open={openMeter === 'oxygen'} onToggle={() => toggle('oxygen')} />
+          <MeterChip k="food" value={m.food} trend={trend('food')} sub={t('meters.solsLeft', { n: Math.floor(left.food) })} open={openMeter === 'food'} onToggle={() => toggle('food')} />
+          <MeterChip k="shield" value={m.shield} trend={trend('shield')} open={openMeter === 'shield'} onToggle={() => toggle('shield')} />
         </div>
         <div className="top-actions">
           <button type="button" className="mini-btn" onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}>
@@ -249,7 +371,7 @@ export default function Hud() {
         )}
       </div>
 
-      {near && !modal && nightfall === 0 && (
+      {near && !modal && !sleeping && (
         <button type="button" className="prompt" onClick={() => activate(near)}>
           <kbd>{touch ? '✋' : 'E'}</kbd>
           {near === 'computer' || (near === 'airlock' && !action) ? t('hud.baseComputer') : near === 'airlock' ? '🏠' : '🔧'}
@@ -260,12 +382,18 @@ export default function Hud() {
         <div className="corner-actions">
           <button type="button" className="round-btn" title={t('hud.baseComputer')} onClick={() => (sfx('click'), useGame.getState().openModal('computer'))}>
             🖥
+            {compDist > 4 && <span className="dist">{n(compDist)} m</span>}
           </button>
-          <button type="button" className="round-btn primary" title={t('hud.endSol')} onClick={() => (sfx('night'), useGame.getState().endSol())}>
+          <button type="button" className="round-btn log-btn" title={t('hud.log')} aria-label={t('hud.log')} onClick={() => (sfx('click'), useGame.getState().setLog(!logOpen))}>
+            📋
+          </button>
+          <button type="button" className="round-btn primary" title={t('hud.sleep')} aria-label={t('hud.sleep')} onClick={() => (sfx('night'), useGame.getState().endSol())}>
             🌙
           </button>
         </div>
       )}
+      {logOpen && !modal && <MissionLog game={game} now={m} target={target} />}
+      <Toast />
       {touch && <Joystick />}
       {!touch && helpVisible && <div className="help">{t('hud.help')}</div>}
     </div>

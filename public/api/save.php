@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 require_post();
 $b = body();
-if (!isset($b['save']) || !is_array($b['save']) || ($b['save']['version'] ?? null) !== 1) fail(400, 'Invalid save');
+if (!isset($b['save']) || !is_array($b['save']) || !in_array($b['save']['version'] ?? null, [1, 2], true)) fail(400, 'Invalid save');
 $json = json_encode($b['save'], JSON_UNESCAPED_UNICODE);
 if ($json === false || strlen($json) > MAX_SAVE_BYTES) fail(413, 'Save too large');
 

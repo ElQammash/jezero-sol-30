@@ -95,6 +95,26 @@ export function meters(s: GameState): Meters {
 }
 
 /** How many sols the stores last at current use, for the HUD ("≈ 12 sols"). */
+/** The engine result of the current sol (what endSol() will give with the current orders). */
+export function solPreview(s: GameState): GameState | null {
+  if (s.status !== 'playing' || s.pendingStage) return null;
+  return endSol(s);
+}
+
+/**
+ * Meters part-way through a sol (t = 0..1): they move from the current values to the
+ * engine result for this sol, so the HUD reacts at once to orders and lands exactly
+ * on endSol() when the sol ends.
+ */
+export function liveMeters(s: GameState, t: number, preview: GameState | null = solPreview(s)): Meters {
+  const a = meters(s);
+  if (!preview) return a;
+  const b = meters(preview);
+  const f = clamp(t, 0, 1);
+  const mix = (x: number, y: number) => Math.round(x + (y - x) * f);
+  return { power: mix(a.power, b.power), oxygen: mix(a.oxygen, b.oxygen), food: mix(a.food, b.food), shield: mix(a.shield, b.shield) };
+}
+
 export function solsLeft(s: GameState) {
   const n = aliveCrew(s).length || 1;
   return {

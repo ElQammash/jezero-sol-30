@@ -21,6 +21,6 @@ export function spotPosition(id: Spot): THREE.Vector3 {
 /** Where the player should go right now (for the beacon and compass), if anywhere. */
 export function currentTarget(game: GameState, action: WorldAction | null): Spot | null {
   if (action) return action.objective === 'shelter' ? 'airlock' : action.objective === 'reactor' ? 'reactor' : 'garage';
-  if (!game.pendingStage && game.sol <= 2 && game.status === 'playing') return 'computer';
+  if (!game.pendingStage && game.status === 'playing' && game.tasks.length === 0) return 'computer';
   return null;
 }

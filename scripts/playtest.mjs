@@ -15,7 +15,7 @@ page.on('console', (m) => m.type() === 'error' && !m.text().includes('404') && e
 await page.goto(url, { waitUntil: 'load' });
 await page.evaluate((l) => {
   localStorage.clear();
-  localStorage.setItem('jezero-sol-30-v1', JSON.stringify({ lang: l, gender: 'f', quality: 'low' }));
+  localStorage.setItem('jezero-sol-30-v2', JSON.stringify({ lang: l, gender: 'f', quality: 'low', speed: 1 }));
 }, lang);
 await page.reload({ waitUntil: 'load' });
 await new Promise((r) => setTimeout(r, 5000));
@@ -92,7 +92,7 @@ for (let step = 0; step < 200; step++) {
       await sleep(400);
       await page.keyboard.press('KeyE');
       await sleep(400);
-    } else log.push('waiting: ' + obj);
+    } else if (obj) log.push('waiting: ' + obj);
     await sleep(300);
   }
   await sleep(450);

@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import * as THREE from 'three';
 import { STORM_TAU, type StageId } from './engine';
 import { setMuted, setStorm } from './game/sound';
-import { useGame } from './game/store';
+import { useGame, worldTimeFor } from './game/store';
 import World from './game/World';
 import { SITES, type SiteId } from './game/world/Base';
 import { useWorld } from './game/worldStore';
 import Hud from './ui/Hud';
-import { Computer, OutcomeModal, SolReport, StageModal } from './ui/Modals';
+import { Computer, OutcomeModal, StageModal } from './ui/Modals';
 import { EndScreen, Intro, TitleScreen } from './ui/Screens';
 
 const STAGE_SITE: Record<StageId, SiteId> = {
@@ -18,15 +18,15 @@ const STAGE_SITE: Record<StageId, SiteId> = {
   communication: 'comms',
   safety: 'habitat',
 };
-const MORNING = 0.32;
-const NIGHT_MS = 3800;
 
 /** Drives time of day, dust and the end-of-sol time-lapse. */
 function useDirector() {
   useEffect(() => {
     let raf = 0;
-    let t0 = 0;
+    let last = performance.now();
     const loop = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
       const s = useGame.getState();
       const w = useWorld.getState();
       // dust follows the storm
@@ -35,20 +35,13 @@ function useDirector() {
       const dust = w.dust + (dustTarget - w.dust) * 0.02;
       if (Math.abs(dust - w.dust) > 0.0005) w.setDust(dust);
       setStorm(dust);
-      if (s.nightfall > 0) {
-        if (!t0) t0 = now;
-        const p = Math.min(1, (now - t0) / ((window as unknown as { __fast?: boolean }).__fast ? 250 : NIGHT_MS));
-        // morning -> sunset (blue!) -> night -> next morning
-        w.setTime(MORNING + p * 1.0);
-        if (p >= 1) {
-          t0 = 0;
-          w.setTime(MORNING);
-          s.finishNight();
-        }
-      } else if (s.screen === 'title') {
+      if (s.screen === 'title') {
         w.setTime(0.68 + Math.sin(now / 9000) * 0.02); // late afternoon glow on the title screen
-      } else if (Math.abs(w.time - MORNING) > 0.001 && s.nightfall === 0) {
-        w.setTime(MORNING);
+      } else {
+        // the sol runs by itself: sunrise, noon, the blue sunset, night
+        s.tick(dt);
+        const t = worldTimeFor(useGame.getState().clock);
+        if (Math.abs(t - w.time) > 0.0002) w.setTime(t);
       }
       raf = requestAnimationFrame(loop);
     };
@@ -100,8 +93,7 @@ export default function App() {
           {modal === 'stage' && game.pendingStage && <StageModal />}
           {modal === 'outcome' && <OutcomeModal />}
           {modal === 'computer' && <Computer />}
-          {modal === 'solReport' && <SolReport />}
-          <NightOverlay />
+
         </>
       )}
       {screen === 'end' && <EndScreen />}
@@ -109,8 +101,3 @@ export default function App() {
   );
 }
 
-function NightOverlay() {
-  const nightfall = useGame((s) => s.nightfall);
-  if (nightfall === 0) return null;
-  return <div className="night-overlay" />;
-}
