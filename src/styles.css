@@ -201,3 +201,40 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .login-form label { display: grid; gap: 4px; font-weight: 600; }
 .login-form input { font: inherit; padding: 10px; border-radius: 10px; border: 1px solid var(--edge); background: rgba(0, 0, 0, 0.35); color: var(--text); }
 .msg { color: var(--warn); }
+
+/* ---------- living sol: clock, speed, live trends, mission log, toast ---------- */
+.sol-clock { display: flex; align-items: center; gap: 6px; pointer-events: auto; }
+.sol-clock .ring { inline-size: 40px; block-size: 40px; border-radius: 50%; flex: none; display: grid; place-items: center; background: conic-gradient(var(--accent2) var(--p), rgba(255,255,255,0.12) 0); position: relative; box-shadow: 0 0 0 1px var(--edge); }
+.sol-clock .ring::after { content: ''; position: absolute; inset: 4px; border-radius: 50%; background: var(--glass-strong); }
+.sol-clock .ring.night { background: conic-gradient(var(--cyan) var(--p), rgba(255,255,255,0.12) 0); }
+.sol-clock .ring span { position: relative; z-index: 1; font-size: 0.95rem; }
+.sol-mini .mars-time { color: var(--text); font-variant-numeric: tabular-nums; }
+.speed { display: flex; gap: 2px; background: var(--glass); border: 1px solid var(--edge); border-radius: 10px; padding: 2px; backdrop-filter: blur(6px); align-items: center; }
+.speed .spd { min-inline-size: 30px; block-size: 28px; border-radius: 7px; font-size: 0.72rem; font-weight: 800; color: var(--muted); background: transparent; border: 0; }
+.speed .spd.on { background: var(--accent); color: #1a0f0b; }
+.speed .held { font-style: normal; font-size: 0.7rem; color: var(--warn); padding-inline: 3px; }
+.trend { font-style: normal; font-size: 0.55rem; margin-inline-start: 2px; vertical-align: 1px; }
+.trend.up { color: var(--ok); }
+.trend.down { color: var(--danger); }
+.mission-log { position: absolute; inset-inline-end: 58px; inset-block-end: 72px; inline-size: min(340px, calc(100vw - 20px)); max-block-size: 58vh; overflow: auto; pointer-events: auto; background: var(--glass-strong); border: 1px solid var(--edge); border-radius: 14px; padding: 10px 12px; backdrop-filter: blur(8px); font-size: 0.82rem; }
+.mission-log .log-head { display: flex; justify-content: space-between; align-items: center; }
+.mission-log .x { background: transparent; border: 0; color: var(--muted); font-size: 1rem; }
+.mission-log h4 { margin: 10px 0 4px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent2); }
+.mission-log ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.mission-log li { display: flex; flex-direction: column; gap: 3px; }
+.mission-log li.down { color: #ffb3a8; }
+.mission-log li.up { color: #b9f5cb; }
+.mission-log .muted { color: var(--muted); margin: 0; }
+.pbar { block-size: 5px; border-radius: 3px; background: rgba(255,255,255,0.12); overflow: hidden; }
+.pbar i { display: block; block-size: 100%; background: var(--ok); }
+.toast { position: absolute; inset-block-start: 22%; inset-inline: 0; margin-inline: auto; inline-size: max-content; padding: 10px 22px; border-radius: 999px; background: var(--glass-strong); border: 1px solid var(--edge); font-weight: 800; font-size: 1.1rem; animation: toast 3.5s ease-out forwards; pointer-events: none; }
+@keyframes toast { 0% { opacity: 0; transform: translateY(10px); } 12%, 80% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@media (max-width: 640px) {
+  .sol-clock { flex-wrap: wrap; max-inline-size: 150px; }
+  .sol-clock .ring { inline-size: 32px; block-size: 32px; }
+  .speed .spd { min-inline-size: 24px; block-size: 24px; }
+  .sol-mini small.mars-time { display: block; font-size: 0.62rem; }
+}
+.world-marker { font-size: 34px; inline-size: 56px; block-size: 56px; display: grid; place-items: center; border-radius: 14px; background: rgba(20,11,8,0.8); border: 2px solid var(--cyan); box-shadow: 0 0 18px rgba(127,216,255,0.55); }
+.round-btn .dist { position: absolute; inset-block-end: -6px; inset-inline: 0; margin-inline: auto; inline-size: max-content; font-size: 0.6rem; font-weight: 800; padding: 1px 5px; border-radius: 6px; background: var(--glass-strong); border: 1px solid var(--edge); }
+.round-btn { position: relative; }

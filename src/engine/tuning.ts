@@ -7,6 +7,10 @@ export const TUNING = {
   crew: 6,
   sols: 30,
 
+  // Real-time sol (presentation only: the engine still settles a sol in one endSol() step)
+  solSeconds: 180, // one sol at 1x speed, in real seconds
+  solDayShare: 0.75, // share of those seconds spent in daylight (the night passes faster)
+
   // Storage (game sizes)
   batteryKWh: 300,
   o2TankKg: 220,

@@ -116,28 +116,6 @@ export function causeText(t: ReturnType<typeof useT>['t'], c: Cause): string {
   return t(`causes.${c.key}`, p);
 }
 
-export function SolReport() {
-  const { t, dir } = useT();
-  const report = useGame((s) => s.report)!;
-  const close = useGame((s) => s.closeReport);
-  const important = report.causes.slice(0, 5);
-  return (
-    <div className="overlay" dir={dir}>
-      <div className="panel report-panel">
-        <h2>☀ {t('hud.morning', { n: report.sol + 1 })}</h2>
-        <ul className="lines">
-          {important.map((c, i) => (
-            <li key={i}>{causeText(t, c)}</li>
-          ))}
-        </ul>
-        <button type="button" className="btn primary big" onClick={() => (sfx('click'), close())}>
-          {t('common.continue')}
-        </button>
-      </div>
-    </div>
-  );
-}
-
 const SETTINGS = ['rations', 'heatingLow', 'greenhouseOn', 'icePlantOn', 'moxieOn'] as const;
 
 export function Computer() {
@@ -197,7 +175,7 @@ export function Computer() {
               useGame.getState().endSol();
             }}
           >
-            🌙 {t('hud.endSol')}
+            🌙 {t('hud.sleep')}
           </button>
         </div>
       </div>

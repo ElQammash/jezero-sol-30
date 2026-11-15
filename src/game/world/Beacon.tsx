@@ -1,3 +1,4 @@
+import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
@@ -42,6 +43,25 @@ export default function Beacon({ terrain }: { terrain: TerrainData }) {
       <mesh ref={ring} material={mats.ring} position={[0, 0.08, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[1.6, 1.9, 40]} />
       </mesh>
+    </group>
+  );
+}
+
+/** The base computer is always findable: a floating screen icon over it. */
+export function ComputerMarker({ terrain }: { terrain: TerrainData }) {
+  const modal = useGame((s) => s.modal);
+  const g = useRef<THREE.Group>(null);
+  const p = spotPosition('computer');
+  const y = heightAt(terrain, p.x, p.z);
+  useFrame(({ clock }) => {
+    if (g.current) g.current.position.y = y + 5.2 + Math.sin(clock.elapsedTime * 2) * 0.25;
+  });
+  if (modal) return null;
+  return (
+    <group ref={g} position={[p.x, y + 5.2, p.z]}>
+      <Html center distanceFactor={18} zIndexRange={[5, 0]} style={{ pointerEvents: 'none' }}>
+        <div className="world-marker">🖥</div>
+      </Html>
     </group>
   );
 }
