@@ -20,7 +20,7 @@ const ar: Messages = {
     low: 'منخفضة',
     medium: 'متوسطة',
     high: 'عالية',
-    credits: 'فريق AstraQuest · تحدي ناسا Space Apps 2026',
+    credits: 'فريق AstraQuest · روينا · تحدي ناسا Space Apps 2026',
     realData: 'الأرض التي تمشي عليها هي فوهة جيزيرو الحقيقية، مبنية من بيانات تضاريس HiRISE من ناسا.',
   },
   intro: [

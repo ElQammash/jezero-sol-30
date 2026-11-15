@@ -1,6 +1,6 @@
 # Jezero: Sol 30 — Product Requirements Document
 
-**Team:** AstraQuest · **Students:** *[student names to be added]*
+**Team:** AstraQuest · **Students:** Rowina
 **Event:** NASA Space Apps Challenge 2026 · **Challenge:** Build a Junior Astronaut Mission Trainer
 **Version:** 1.0 (2026-11-15) · **Status:** Built, tested and deployed
 **Live:** https://mistyrose-eland-246079.hostingersite.com/ · **Code:** https://github.com/ElQammash/jezero-sol-30

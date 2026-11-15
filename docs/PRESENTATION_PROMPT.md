@@ -5,7 +5,7 @@ Paste everything below the line into Claude, Gamma, Canva Magic Design, Beautifu
 
 Create a professional 16:9 presentation (about 20 slides) for a NASA Space Apps Challenge 2026 judging panel. The audience is technical judges, and the product is for students aged 10–14. Use a dark Mars style: night brown #1A0F0B, sand #F6ECE3, rust accent #E2652A, sky-blue accent #4FB3D9. Headings in Space Grotesk, body text in Inter. Use one idea per slide, big numbers, and real screenshots. Add speaker notes to every slide.
 
-**Project:** "Jezero: Sol 30", a 3D browser game by Team AstraQuest (students: [names]). Challenge: Build a Junior Astronaut Mission Trainer. Live: https://mistyrose-eland-246079.hostingersite.com/ · Code: https://github.com/ElQammash/jezero-sol-30
+**Project:** "Jezero: Sol 30", a 3D browser game by Team AstraQuest (students: Rowina). Challenge: Build a Junior Astronaut Mission Trainer. Live: https://mistyrose-eland-246079.hostingersite.com/ · Code: https://github.com/ElQammash/jezero-sol-30
 
 **Slides to make:**
 1. **Title:** Jezero: Sol 30. A 3D Mars colony game built on real NASA data. Six lives. Thirty sols. Every decision counts.

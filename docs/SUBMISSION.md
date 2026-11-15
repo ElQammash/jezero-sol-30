@@ -1,7 +1,7 @@
 # Space Apps 2026: Submission Text (draft)
 
 **Project name:** Jezero: Sol 30
-**Team:** AstraQuest · *[student names]*
+**Team:** AstraQuest · Students: Rowina
 **Challenge:** Build a Junior Astronaut Mission Trainer
 **Demo:** https://mistyrose-eland-246079.hostingersite.com/
 **Repository:** https://github.com/ElQammash/jezero-sol-30
