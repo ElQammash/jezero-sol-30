@@ -17,6 +17,7 @@ import {
   type Task,
 } from '../engine';
 import type { Gender, Lang } from '../i18n';
+import { pushCloud, type CloudBlob } from './cloud';
 import type { Quality } from './World';
 import type { SiteId } from './world/Base';
 
@@ -80,11 +81,36 @@ function loadSave(): Partial<Pick<Store, 'lang' | 'gender' | 'quality' | 'muted'
   }
 }
 function persist(s: Store) {
+  const game = { ...s.game, history: s.game.history.map((h) => ({ ...h, before: undefined })), stageLog: s.game.stageLog };
+  const blob = { version: 1 as const, updatedAt: Date.now(), lang: s.lang, gender: s.gender, quality: s.quality, muted: s.muted, game };
   try {
-    const game = { ...s.game, history: s.game.history.map((h) => ({ ...h, before: undefined })), stageLog: s.game.stageLog };
-    localStorage.setItem(SAVE_KEY, JSON.stringify({ lang: s.lang, gender: s.gender, quality: s.quality, muted: s.muted, game }));
+    localStorage.setItem(SAVE_KEY, JSON.stringify(blob));
   } catch {
     /* storage full or blocked */
+  }
+  pushCloud(blob);
+}
+
+/** Apply a save that came from the cloud (another device). */
+export function applyCloudSave(blob: CloudBlob) {
+  const b = blob as unknown as Partial<Pick<Store, 'lang' | 'gender' | 'quality' | 'muted' | 'game'>>;
+  useGame.setState({
+    ...(b.lang ? { lang: b.lang } : {}),
+    ...(b.gender ? { gender: b.gender } : {}),
+    ...(b.game && b.game.status === 'playing' ? { game: b.game as GameState } : {}),
+  });
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify(blob));
+  } catch {
+    /* ignore */
+  }
+}
+
+export function localUpdatedAt(): number {
+  try {
+    return (JSON.parse(localStorage.getItem(SAVE_KEY) ?? '{}') as { updatedAt?: number }).updatedAt ?? 0;
+  } catch {
+    return 0;
   }
 }
 
@@ -174,3 +200,5 @@ export const useGame = create<Store>((set, get) => {
     },
   };
 });
+
+if (import.meta.env.DEV) (window as unknown as { __game: typeof useGame }).__game = useGame;

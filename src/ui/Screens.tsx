@@ -3,11 +3,13 @@ import { analyzeMission, starsFor } from '../engine';
 import { sfx, startAmbience } from '../game/sound';
 import { useGame } from '../game/store';
 import { useT } from '../game/useT';
+import Account from './Account';
 
 export function TitleScreen() {
   const { t, dir } = useT();
   const s = useGame();
   const canResume = s.game.history.length > 0 && s.game.status === 'playing';
+  const [account, setAccount] = useState(false);
   return (
     <div className="title-screen" dir={dir}>
       <div className="title-box">
@@ -44,6 +46,10 @@ export function TitleScreen() {
             🚀 {t('title.start')}
           </button>
         </div>
+        <button type="button" className="chip" onClick={() => setAccount(true)}>
+          ☁ {t('account.button')}
+        </button>
+        {account && <Account onClose={() => setAccount(false)} />}
         <p className="real-data">🛰 {t('title.realData')}</p>
         <small className="credits">{t('title.credits')}</small>
       </div>

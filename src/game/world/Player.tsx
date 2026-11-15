@@ -5,7 +5,7 @@ import { input } from '../input';
 import { heightAt, type TerrainData } from '../terrain';
 import { useWorld } from '../worldStore';
 import Astronaut, { type AstronautHandle } from './Astronaut';
-import { COLLIDERS, SITES } from './Base';
+import { COLLIDERS, SEGMENTS, SITES } from './Base';
 
 const WALK = 2.4;
 const RUN = 5.2;
@@ -48,6 +48,22 @@ export default function Player({ terrain, cinematic }: { terrain: TerrainData; c
       if (d < r + 0.4 && d > 0.001) {
         next.x = c.x + (dx / d) * (r + 0.4);
         next.z = c.z + (dz / d) * (r + 0.4);
+      }
+    }
+    // capsule colliders: tunnels, lab, rows of solar panels
+    for (const s of SEGMENTS) {
+      const vx = s.bx - s.ax;
+      const vz = s.bz - s.az;
+      const t = Math.max(0, Math.min(1, ((next.x - s.ax) * vx + (next.z - s.az) * vz) / (vx * vx + vz * vz)));
+      const cx = s.ax + vx * t;
+      const cz = s.az + vz * t;
+      const dx = next.x - cx;
+      const dz = next.z - cz;
+      const d = Math.hypot(dx, dz);
+      const min = s.r + 0.4;
+      if (d < min && d > 0.001) {
+        next.x = cx + (dx / d) * min;
+        next.z = cz + (dz / d) * min;
       }
     }
     next.x = THREE.MathUtils.clamp(next.x, -LIMIT, LIMIT);

@@ -203,6 +203,20 @@ const en = {
     stars: '{n} of 3 stars',
     timeline: 'Mission timeline',
   },
+  account: {
+    button: 'Cloud save',
+    title: 'Cloud save',
+    intro: 'Make an account to continue your mission on another device. We only store a username, no email.',
+    username: 'Username',
+    password: 'Password',
+    login: 'Log in',
+    register: 'Create account',
+    logout: 'Log out',
+    loggedIn: 'Logged in as {name}',
+    synced: 'Saved to the cloud.',
+    error: 'Something went wrong: {msg}',
+    unavailable: 'Cloud save is not available right now. Your game is still saved on this device.',
+  },
   source: { title: 'Where this comes from', simplified: 'Simplified for the game', notNasa: 'Not NASA', open: 'Open source', primary: 'Read in the original', secondary: 'Checked via reports', derived: 'Calculated by us' },
 };
 

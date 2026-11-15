@@ -1,0 +1,2 @@
+# Fallback location of the SQLite database. Never serve it.
+Require all denied

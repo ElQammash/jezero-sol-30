@@ -6,11 +6,11 @@ import Astronaut, { type AstronautHandle } from './Astronaut';
 
 /** Each crewmember walks a short route near their workplace. */
 const ROUTES: Record<Exclude<Role, 'commander'>, { a: [number, number]; b: [number, number]; stripe: string }> = {
-  engineer: { a: [12, 14.5], b: [20, -6], stripe: '#3a8dff' },
-  botanist: { a: [-14, 15], b: [-30, 14], stripe: '#4ec26a' },
+  engineer: { a: [12, 14.5], b: [12.5, 0], stripe: '#3a8dff' },
+  botanist: { a: [-13, 18.5], b: [-30, 18.5], stripe: '#4ec26a' },
   doctor: { a: [3, 11.5], b: [-6, 13], stripe: '#ff4f6d' },
   geologist: { a: [6, -20], b: [24, -32], stripe: '#ffb03a' },
-  pilot: { a: [-10, -10], b: [-24, -24], stripe: '#b067ff' },
+  pilot: { a: [-18, -6], b: [-30, -12], stripe: '#b067ff' },
 };
 
 function Member({ id, terrain, game }: { id: Exclude<Role, 'commander'>; terrain: TerrainData; game: GameState }) {

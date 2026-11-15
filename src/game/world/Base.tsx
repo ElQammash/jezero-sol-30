@@ -19,6 +19,7 @@ export const SITES = {
   reactor: new THREE.Vector3(-170, 0, 140),
   tower: new THREE.Vector3(16, 0, -9),
   lab: new THREE.Vector3(-4, 0, -20),
+  robot: new THREE.Vector3(20, 0, -27),
 } as const;
 export type SiteId = keyof typeof SITES;
 
@@ -35,6 +36,7 @@ export const COLLIDERS: [SiteId, number][] = [
   ['reactor', 2.5],
   ['tower', 3.4],
   ['lab', 4.6],
+  ['robot', 1.9],
 ];
 
 /** Pressurised tunnels between modules: [from, to, radius of from, radius of to]. */
@@ -43,6 +45,48 @@ const TUNNELS: [SiteId, SiteId, number, number][] = [
   ['habitat', 'lab', 6.2, 4.4],
   ['habitat', 'tower', 6.2, 3.2],
 ];
+
+export interface Segment {
+  ax: number;
+  az: number;
+  bx: number;
+  bz: number;
+  r: number;
+}
+
+/** Capsule colliders for long shapes: tunnels, the lab module and each row of solar panels. */
+export const SEGMENTS: Segment[] = (() => {
+  const out: Segment[] = [];
+  for (const [a, b, ra, rb] of TUNNELS) {
+    const A = SITES[a];
+    const B = SITES[b];
+    const dx = B.x - A.x;
+    const dz = B.z - A.z;
+    const len = Math.hypot(dx, dz);
+    const ux = dx / len;
+    const uz = dz / len;
+    out.push({ ax: A.x + ux * ra, az: A.z + uz * ra, bx: B.x - ux * rb, bz: B.z - uz * rb, r: 1.8 });
+  }
+  const rotated = (site: SiteId, rot: number, x: number, z: number) => {
+    const c = SITES[site];
+    // matches three.js Y rotation of the placed group
+    return [c.x + x * Math.cos(rot) + z * Math.sin(rot), c.z - x * Math.sin(rot) + z * Math.cos(rot)] as const;
+  };
+  // lab: a 9 m tube with rounded ends, rotated 0.3 rad
+  {
+    const [ax, az] = rotated('lab', 0.3, -6.6, 0);
+    const [bx, bz] = rotated('lab', 0.3, 6.6, 0);
+    out.push({ ax, az, bx, bz, r: 2.6 });
+  }
+  // solar field: 4 rows of panels; the gaps between rows stay walkable
+  for (let r = 0; r < 4; r++) {
+    const z = r * 5 - 7.5;
+    const [ax, az] = rotated('solar', 0.05, -13.2, z);
+    const [bx, bz] = rotated('solar', 0.05, 13.2, z);
+    out.push({ ax, az, bx, bz, r: 1.45 });
+  }
+  return out;
+})();
 
 function useMaterials() {
   return useMemo(() => {

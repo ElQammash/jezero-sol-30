@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { availableTasks, commsDelayMinutes, forecast, OPTION_PREVIEWS, STAGE_ORDER, type Cause, type Task } from '../engine';
 import { FACT_SOURCES } from '../game/facts';
-import { sfx } from '../game/sound';
+import { playRover, sfx } from '../game/sound';
 import { useGame } from '../game/store';
 import { useT } from '../game/useT';
 import SourceButton from './SourceButton';
@@ -66,7 +66,10 @@ export function OutcomeModal() {
   const { t, n, dir } = useT();
   const outcome = useGame((s) => s.outcome)!;
   const close = useGame((s) => s.closeOutcome);
-  useEffect(() => sfx(outcome.deaths.length ? 'bad' : outcome.success ? 'good' : 'bad'), [outcome]);
+  useEffect(() => {
+    sfx(outcome.deaths.length ? 'bad' : outcome.success ? 'good' : 'bad');
+    if (outcome.stage === 'mobility' && outcome.success) void playRover();
+  }, [outcome]);
   const nameParams = (p?: Record<string, number | string>) => {
     if (!p) return p;
     const q = { ...p };

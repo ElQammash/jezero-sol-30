@@ -8,3 +8,4 @@ assets-src/
 public/api/data/*.sqlite*
 public/api/config.local.php
 .claude/settings.local.json
+jezero-data/

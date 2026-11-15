@@ -43,7 +43,7 @@ for (let step = 0; step < 200; step++) {
     outcome: !!document.querySelector('.outcome-panel'),
     report: !!document.querySelector('.report-panel'),
     end: !!document.querySelector('.end-panel'),
-    sol: document.querySelector('.sol-badge b')?.textContent,
+    sol: document.querySelector('.sol-mini b')?.textContent,
     meters: [...document.querySelectorAll('.meter-val')].map((x) => x.textContent).join(' '),
     title: document.querySelector('.stage-panel h2')?.textContent,
     lines: [...document.querySelectorAll('.outcome-panel .lines li, .report-panel .lines li')].map((x) => x.textContent).join(' | '),
@@ -81,11 +81,11 @@ for (let step = 0; step < 200; step++) {
     continue;
   }
   // in-world action pending? (should not happen with non-world choices)
-  const hasEnd = await click('.bottom-actions .btn.primary');
+  const hasEnd = await click('.corner-actions .round-btn.primary');
   if (!hasEnd) {
-    const obj = await page.evaluate(() => document.querySelector('.objective span')?.textContent ?? '');
+    const obj = await page.evaluate(() => window.__game?.getState().action?.objective ?? '');
     // in-world action: walk (teleport, dev only) to the spot and press E
-    const spot = /reactor/i.test(obj) ? [-170, 145] : /garage/i.test(obj) ? [10, -19.2] : /airlock/i.test(obj) ? [0, 9.6] : null;
+    const spot = obj === 'reactor' ? [-170, 145] : obj === 'repair' ? [10, -19.2] : obj === 'shelter' ? [0, 9.6] : null;
     if (spot) {
       log.push('  in-world: ' + obj);
       await page.evaluate(([x, z]) => window.__world.getState().player.set(x, 0, z), spot);

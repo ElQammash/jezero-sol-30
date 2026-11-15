@@ -33,10 +33,50 @@ function noiseBuffer(c: AudioContext, seconds: number) {
   return buf;
 }
 
+const buffers: Record<string, AudioBuffer> = {};
+async function loadBuffer(c: AudioContext, url: string): Promise<AudioBuffer | null> {
+  if (buffers[url]) return buffers[url];
+  try {
+    const data = await fetch(url).then((r) => r.arrayBuffer());
+    buffers[url] = await c.decodeAudioData(data);
+    return buffers[url];
+  } catch {
+    return null;
+  }
+}
+
+/** Real wind recorded on Mars by NASA Perseverance's microphone (NASA/JPL-Caltech), looped. */
+async function startRealWind(c: AudioContext) {
+  const buf = await loadBuffer(c, './audio/mars-wind.mp3');
+  if (!buf || !master) return;
+  const src = c.createBufferSource();
+  src.buffer = buf;
+  src.loop = true;
+  const g = c.createGain();
+  g.gain.value = 0.9;
+  src.connect(g).connect(master);
+  src.start();
+}
+
+/** NASA recording of Perseverance driving on Mars (sol 16), used when the rover comes back. */
+export async function playRover() {
+  const c = ac();
+  if (!c || !master || muted) return;
+  const buf = await loadBuffer(c, './audio/rover-drive.mp3');
+  if (!buf) return;
+  const src = c.createBufferSource();
+  src.buffer = buf;
+  const g = c.createGain();
+  g.gain.value = 0.7;
+  src.connect(g).connect(master);
+  src.start(0, 0, 8);
+}
+
 /** Thin-air wind: Mars sounds are quiet and muffled (low pressure). */
 export function startAmbience() {
   const c = ac();
   if (!c || !master || wind) return;
+  void startRealWind(c);
   const src = c.createBufferSource();
   src.buffer = noiseBuffer(c, 6);
   src.loop = true;
