@@ -1,0 +1,24 @@
+{
+  "near": {
+    "size": 1024,
+    "n": 513,
+    "min": -2585.8134765625,
+    "max": -2550.964111328125
+  },
+  "far": {
+    "size": 18000,
+    "n": 257,
+    "min": -2988.1025390625,
+    "max": -1700.3707275390625
+  },
+  "ortho": {
+    "n": 1024
+  },
+  "site": {
+    "lat": 18.4447,
+    "lon": 77.4508
+  },
+  "sourceFar": "CTX DTM P02_001820_1984_XI_18N282W__P06_003442_1987_XI_18N282W (NASA/JPL/MSSS; USGS Astrogeology analysis-ready data)",
+  "source": "HiRISE DTM DTEEC_045994_1985_046060_1985_U01 and orthoimage ESP_045994_1985 (NASA/JPL/University of Arizona; USGS Astrogeology analysis-ready data)",
+  "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_045994_1985_ESP_046060_1985/DTEEC_045994_1985_046060_1985_U01.tif"
+}

@@ -231,7 +231,7 @@ export function chooseOption(prev: GameState, option: OptionId, ctx: ChoiceConte
         doseAll(s, () => 18 * shieldFactor(eff), out);
         line('result', { water: Math.round(used), delay: Math.round(delay) });
       }
-      out.factKey = 'lightDelay';
+      out.factKey = option === 'C' ? 'waterWall' : 'lightDelay';
       break;
     }
     case 'safety': {
