@@ -1,6 +1,5 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
-import * as THREE from 'three';
 import type { GameState, Role } from '../../engine';
 import { heightAt, type TerrainData } from '../terrain';
 import Astronaut, { type AstronautHandle } from './Astronaut';
