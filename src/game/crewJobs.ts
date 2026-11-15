@@ -13,7 +13,7 @@ const PREFERRED: Record<Task, Worker[]> = {
 
 /** Where each job is done (x, z on the base map). */
 export const WORK_SITE: Record<Task, [number, number]> = {
-  cleanPanels: [28, -3.3], // walkway between two rows of panels
+  cleanPanels: [15, -3.3], // the end of the panel rows, where cleaning starts
   pileRegolith: [-7.5, 5.5], // beside the habitat
   maintain: [14, 16.4], // the power hub
   tendGreenhouse: [-22, 3], // inside the greenhouse dome

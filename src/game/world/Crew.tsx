@@ -100,7 +100,7 @@ function Member({ id, terrain, game, task }: { id: Worker; terrain: TerrainData;
   return (
     <Astronaut ref={ref} stripe={r.stripe}>
       <pointLight ref={sparks} position={[0.4, 1.2, 0.5]} color="#9fd4ff" distance={5} intensity={0} />
-      <Html position={[0, 2.35, 0]} center distanceFactor={14} zIndexRange={[4, 0]} style={{ pointerEvents: 'none' }}>
+      <Html position={[0, 2.35, 0]} center distanceFactor={22} zIndexRange={[4, 0]} style={{ pointerEvents: 'none' }}>
         <div className={`crew-tag ${tag ? 'busy' : ''}`}>
           <b>
             {r.icon} {t(`names.${id}`)}

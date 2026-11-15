@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=block" rel="stylesheet">
 <style>
-:root { --night:#1A0F0B; --sand:#F6ECE3; --rust:#E2652A; --sky:#4FB3D9; --dim:rgba(246,236,227,.68); }
+:root { --night:#1A0F0B; --sand:#F6ECE3; --rust:#E2652A; --sky:#4FB3D9; --dim:rgba(246,236,227,.72); }
 @page { size: 1920px 1080px; margin: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: var(--night); }
@@ -15,45 +15,50 @@ body { font-family: 'Inter', sans-serif; color: var(--sand); -webkit-print-color
 .slide:last-child { page-break-after: auto; break-after: auto; }
 .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .shade { position: absolute; inset: 0; }
-.pad { position: absolute; inset: 0; padding: 110px 128px 120px; display: flex; flex-direction: column; }
+/* content area ends 140px above the bottom: the footer zone is reserved */
+.pad { position: absolute; left: 128px; right: 128px; top: 100px; bottom: 140px; display: flex; flex-direction: column; }
+.foot { position: absolute; left: 128px; right: 128px; bottom: 40px; height: 36px; display: flex; justify-content: space-between; align-items: center; font-size: 21px; color: rgba(246,236,227,.62); border-top: 1px solid rgba(246,236,227,.14); padding-top: 10px; }
 h1, h2, h3, .num { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
 h1 { font-size: 168px; line-height: .95; font-weight: 700; }
-h2 { font-size: 92px; line-height: 1.02; font-weight: 700; max-width: 1500px; }
-h3 { font-size: 40px; font-weight: 600; line-height: 1.15; }
-.eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--rust); margin-bottom: 30px; }
-.lead { font-size: 44px; line-height: 1.3; color: var(--sand); max-width: 1300px; }
-.txt { font-size: 30px; line-height: 1.4; color: var(--dim); }
+h2 { font-size: 84px; line-height: 1.03; font-weight: 700; max-width: 1500px; }
+h3 { font-size: 38px; font-weight: 600; line-height: 1.15; }
+.eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--rust); margin-bottom: 26px; }
+.lead { font-size: 42px; line-height: 1.3; color: var(--sand); max-width: 1300px; }
+.txt { font-size: 29px; line-height: 1.38; color: var(--dim); }
 .rust { color: var(--rust); } .sky { color: var(--sky); }
-.foot { position: absolute; left: 128px; right: 128px; bottom: 44px; display: flex; justify-content: space-between; font-size: 20px; color: rgba(246,236,227,.55); }
-.chips { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 44px; }
-.chip { font-size: 30px; font-weight: 600; padding: 16px 30px; border-radius: 999px; background: rgba(26,15,11,.72); border: 2px solid rgba(246,236,227,.25); }
+.chips { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 40px; }
+.chip { font-size: 30px; font-weight: 600; padding: 16px 30px; border-radius: 999px; background: rgba(26,15,11,.78); border: 2px solid rgba(246,236,227,.25); }
 .chip b { color: var(--rust); }
 .row { display: flex; gap: 48px; }
-.card { flex: 1; background: rgba(246,236,227,.06); border: 2px solid rgba(246,236,227,.12); border-radius: 28px; padding: 40px; }
-.num { font-size: 120px; font-weight: 700; line-height: 1; }
-.shot { border-radius: 22px; border: 3px solid rgba(246,236,227,.18); box-shadow: 0 30px 80px rgba(0,0,0,.5); object-fit: cover; }
-.step { display: flex; flex-direction: column; gap: 22px; flex: 1; }
-.step .k { font-family: 'Space Grotesk'; font-size: 30px; font-weight: 700; color: var(--night); background: var(--rust); width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; }
-.data { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 56px; margin-top: 36px; }
-.data div { border-top: 3px solid rgba(246,236,227,.15); padding-top: 18px; }
-.data .v { font-family: 'Space Grotesk'; font-size: 54px; font-weight: 700; color: var(--sky); }
-.data .l { font-size: 26px; color: var(--dim); margin-top: 6px; line-height: 1.35; }
-.bar { height: 46px; border-radius: 12px; background: rgba(246,236,227,.1); overflow: hidden; margin-top: 16px; }
+.card { flex: 1; background: rgba(246,236,227,.06); border: 2px solid rgba(246,236,227,.12); border-radius: 28px; padding: 36px; }
+.num { font-size: 110px; font-weight: 700; line-height: 1; }
+.shot { display: block; border-radius: 20px; border: 3px solid rgba(246,236,227,.2); box-shadow: 0 24px 60px rgba(0,0,0,.5); object-fit: cover; }
+.step { display: flex; flex-direction: column; gap: 18px; flex: 1; }
+.step .k { font-family: 'Space Grotesk'; font-size: 26px; font-weight: 700; color: var(--night); background: var(--rust); width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.step .head { display: flex; gap: 16px; align-items: center; }
+.data { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 56px; margin-top: 34px; }
+.data div { border-top: 3px solid rgba(246,236,227,.15); padding-top: 14px; }
+.data .v { font-family: 'Space Grotesk'; font-size: 50px; font-weight: 700; color: var(--sky); }
+.data .l { font-size: 25px; color: var(--dim); margin-top: 4px; line-height: 1.3; }
+.bar { height: 40px; border-radius: 12px; background: rgba(246,236,227,.1); overflow: hidden; margin-top: 12px; }
 .bar i { display: block; height: 100%; border-radius: 12px; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; align-items: center; }
+.tag { font-family: 'Space Grotesk'; font-size: 26px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 </style>
 </head>
 <body>
 
 <!-- 1 TITLE -->
 <section class="slide">
-  <img class="bg" src="../screenshots/01-title.png" alt="">
-  <div class="shade" style="background:linear-gradient(90deg, rgba(26,15,11,.97) 0%, rgba(26,15,11,.88) 48%, rgba(26,15,11,.25) 100%)"></div>
+  <img class="bg" src="img/hero.jpg" alt="">
+  <div class="shade" style="background:linear-gradient(90deg, rgba(26,15,11,.96) 0%, rgba(26,15,11,.86) 44%, rgba(26,15,11,.35) 75%, rgba(26,15,11,.2) 100%)"></div>
   <div class="pad" style="justify-content:center">
     <p class="eyebrow">NASA Space Apps Challenge 2026</p>
     <h1>Jezero:<br>Sol 30</h1>
-    <p class="lead" style="margin-top:44px; max-width:1000px">A 3D Mars colony game built on real NASA data. Keep six astronauts alive for thirty sols.</p>
-    <div style="margin-top:70px; display:flex; flex-direction:column; gap:14px">
-      <p class="txt" style="color:var(--sand)"><b class="rust">Team</b> AstraQuest &nbsp;·&nbsp; <b class="rust">Members</b> <span id="members">Rowina</span></p>
+    <p class="lead" style="margin-top:40px; max-width:1000px">A 3D Mars colony game built on real NASA data. Keep six astronauts alive for thirty sols.</p>
+    <div style="margin-top:60px; display:flex; flex-direction:column; gap:14px">
+      <p class="txt" style="color:var(--sand)"><b class="rust">Team</b> AstraQuest</p>
+      <p class="txt" style="color:var(--sand)"><b class="rust">Team members</b> <span id="members">Rowina</span></p>
       <p class="txt" style="color:var(--sand)"><b class="rust">Challenge</b> Build a Junior Astronaut Mission Trainer</p>
     </div>
   </div>
@@ -65,11 +70,11 @@ h3 { font-size: 40px; font-weight: 600; line-height: 1.15; }
   <div class="pad">
     <p class="eyebrow">The challenge</p>
     <h2>On Mars there is never enough of everything.</h2>
-    <p class="lead" style="margin-top:36px; color:var(--dim)">Every mission plan is a chain of trade-offs. Students aged 10–14 should <span class="rust">feel</span> them, not just read about them.</p>
+    <p class="lead" style="margin-top:30px; color:var(--dim)">Every mission plan is a chain of trade-offs. Students aged 10–14 should <span class="rust">feel</span> them, not just read about them.</p>
     <div class="row" style="margin-top:auto">
-      <div class="card"><p class="num rust">1</p><h3 style="margin-top:20px">Trade-offs you feel</h3><p class="txt" style="margin-top:14px">Power for ice means less for heat. A risky walk saves the base but costs health.</p></div>
-      <div class="card"><p class="num sky">2</p><h3 style="margin-top:20px">Real NASA data</h3><p class="txt" style="margin-top:14px">Every number has a source. Simplifications are labelled honestly.</p></div>
-      <div class="card"><p class="num" style="color:var(--sand)">3</p><h3 style="margin-top:20px">No instructions</h3><p class="txt" style="margin-top:14px">A child opens a link and starts playing, in Arabic or English.</p></div>
+      <div class="card"><p class="num rust">1</p><h3 style="margin-top:18px">Trade-offs you feel</h3><p class="txt" style="margin-top:12px">Power for ice means less for heat. A risky walk saves the base but costs health.</p></div>
+      <div class="card"><p class="num sky">2</p><h3 style="margin-top:18px">Real NASA data</h3><p class="txt" style="margin-top:12px">Every number has a source. Simplifications are labelled honestly.</p></div>
+      <div class="card"><p class="num" style="color:var(--sand)">3</p><h3 style="margin-top:18px">No instructions</h3><p class="txt" style="margin-top:12px">A child opens a link and starts playing, in Arabic or English.</p></div>
     </div>
   </div>
   <div class="foot"><span>Built with AI assistance (Claude Code). All visuals are real gameplay or NASA assets.</span><span>2 / 7</span></div>
@@ -77,8 +82,8 @@ h3 { font-size: 40px; font-weight: 600; line-height: 1.15; }
 
 <!-- 3 OUR ANSWER -->
 <section class="slide">
-  <img class="bg" src="../screenshots/02-gameplay.png" alt="">
-  <div class="shade" style="background:linear-gradient(0deg, rgba(26,15,11,.97) 0%, rgba(26,15,11,.75) 36%, rgba(26,15,11,0) 70%)"></div>
+  <img class="bg" src="img/gameplay.jpg" alt="">
+  <div class="shade" style="background:linear-gradient(0deg, rgba(26,15,11,.97) 0%, rgba(26,15,11,.8) 34%, rgba(26,15,11,0) 66%)"></div>
   <div class="pad" style="justify-content:flex-end">
     <p class="eyebrow">Our answer</p>
     <h2>Walk a real 3D Jezero colony, in any browser.</h2>
@@ -97,23 +102,32 @@ h3 { font-size: 40px; font-weight: 600; line-height: 1.15; }
 <section class="slide">
   <div class="pad">
     <p class="eyebrow">How it plays</p>
-    <h2 id="play-title">30 sols · 6 crew · 4 meters · 6 crises</h2>
-    <div class="row" style="margin-top:60px; gap:40px">
-      <div class="step"><img class="shot" src="../screenshots/05-base-computer.png" style="width:100%; height:330px" alt=""><span class="k">1</span><h3>Run the base</h3><p class="txt">Give crew orders and switch systems. Power, Oxygen, Food and Shield move with every choice.</p></div>
-      <div class="step"><img class="shot" src="../screenshots/03-crisis.png" style="width:100%; height:330px" alt=""><span class="k">2</span><h3>Face six crises</h3><p class="txt">A dust storm, a broken rover, a delayed solar-storm warning. Some you act out yourself in the world.</p></div>
-      <div class="step"><img class="shot" src="../screenshots/06-debrief.png" style="width:100%; height:330px" alt=""><span class="k">3</span><h3>Learn from the debrief</h3><p class="txt">The game replays the other choices and shows the one that mattered most. Retry from there.</p></div>
+    <h2 style="font-size:72px">30 sols · 6 crew · 4 meters · 6 crises</h2>
+    <div class="row" style="margin-top:44px; gap:40px">
+      <div class="step"><img class="shot" src="img/clock.jpg" style="width:100%; height:350px" alt="Sol clock and speed buttons">
+        <div class="head"><span class="k">1</span><h3>The sol runs by itself</h3></div>
+        <p class="txt">Sunrise to night on a Mars clock. Pause or play at 2× and 4×.</p></div>
+      <div class="step"><img class="shot" src="img/goal.jpg" style="width:100%; height:350px" alt="Daily goal and ground arrows">
+        <div class="head"><span class="k">2</span><h3>A goal and a path</h3></div>
+        <p class="txt">Today's goal comes from what the colony needs most. Arrows on the ground lead the way.</p></div>
+      <div class="step"><img class="shot" src="img/crew.jpg" style="width:100%; height:350px" alt="Lina cleaning the solar panels with a countdown">
+        <div class="head"><span class="k">3</span><h3>The crew do the job</h3></div>
+        <p class="txt">Lina walks to the panels and cleans them. You see the progress and the countdown.</p></div>
     </div>
+    <p class="txt" style="margin-top:30px; color:var(--sand)">Then six crises arrive: a dust storm, a broken rover, a delayed solar-storm warning… and a debrief shows the choice that mattered most.</p>
   </div>
   <div class="foot"><span>Built with AI assistance (Claude Code). All visuals are real gameplay or NASA assets.</span><span>4 / 7</span></div>
 </section>
 
 <!-- 5 NASA DATA -->
 <section class="slide">
-  <img class="bg" src="../screenshots/04-outcome-fact.png" alt="" style="left:auto; right:0; width:46%">
-  <div class="shade" style="background:linear-gradient(90deg, rgba(26,15,11,1) 0%, rgba(26,15,11,1) 52%, rgba(26,15,11,.35) 70%, rgba(26,15,11,.1) 100%)"></div>
-  <div class="pad" style="padding-right:860px">
+  <img class="bg" src="img/source.jpg" alt="" style="left:auto; right:0; width:46%; object-position: 50% 100%; filter: brightness(.5)">
+  <div class="shade" style="background:linear-gradient(90deg, rgba(26,15,11,1) 0%, rgba(26,15,11,1) 52%, rgba(26,15,11,.5) 62%, rgba(26,15,11,.15) 100%)"></div>
+  <img class="shot" src="img/source-panel.jpg" alt="The Source panel in the game" style="position:absolute; right:190px; top:110px; width:516px; height:810px">
+  <p class="txt" style="position:absolute; right:190px; top:60px; width:516px; text-align:center; color:var(--sand); font-size:24px">Tap a meter, then <b class="sky">Source</b>:</p>
+  <div class="pad" style="right:860px">
     <p class="eyebrow">Built on NASA open data</p>
-    <h2 style="font-size:68px">The ground, the rover, the wind and every number.</h2>
+    <h2 style="font-size:64px">The ground, the rover, the wind and every number.</h2>
     <div class="data">
       <div><p class="v">HiRISE + CTX</p><p class="l">Real Jezero terrain around Perseverance's landing site</p></div>
       <div><p class="v">Perseverance</p><p class="l">NASA's 3D model and wind recorded by its microphone</p></div>
@@ -122,7 +136,7 @@ h3 { font-size: 40px; font-weight: 600; line-height: 1.15; }
       <div><p class="v">12 g/h</p><p class="l">Oxygen made by MOXIE on Perseverance</p></div>
       <div><p class="v">0.67 mSv</p><p class="l">Daily radiation measured by Curiosity RAD</p></div>
     </div>
-    <p class="txt" style="margin-top:28px"><b class="sky" id="data-count">29</b> sourced numbers, each with a <b style="color:var(--sand)">Source</b> button in the game.</p>
+    <p class="txt" style="margin-top:24px"><b class="sky" id="data-count">29</b> sourced numbers, each with a <b style="color:var(--sand)">Source</b> button in the game.</p>
   </div>
   <div class="foot"><span>Built with AI assistance (Claude Code). All visuals are real gameplay or NASA assets.</span><span>5 / 7</span></div>
 </section>
@@ -131,24 +145,28 @@ h3 { font-size: 40px; font-weight: 600; line-height: 1.15; }
 <section class="slide">
   <div class="pad">
     <p class="eyebrow">Trade-offs you feel</p>
-    <h2 style="font-size:80px">Early choices change later dangers.</h2>
-    <div class="row" style="margin-top:56px; gap:64px">
-      <div style="flex:1.1; display:flex; flex-direction:column; gap:30px">
-        <p class="txt" style="color:var(--sand); font-size:34px">→ Ice mining needs power, so the dust storm hits harder.</p>
-        <p class="txt" style="color:var(--sand); font-size:34px">→ A surface habitat makes the solar storm deadly.</p>
-        <p class="txt" style="color:var(--sand); font-size:34px">→ Crew who took risky walks get sick later.</p>
-        <p class="txt" style="color:var(--sand); font-size:34px">→ You see it: dust on panels, wilting plants, regolith on the roof.</p>
+    <h2 style="font-size:68px">Skip one job and the base pays for it tonight.</h2>
+    <div class="row" style="margin-top:36px; gap:56px; align-items:stretch">
+      <div style="flex:1.25; display:flex; flex-direction:column; gap:14px">
+        <div class="pair">
+          <p class="tag rust">Before · dusty panels</p><p class="tag sky">After · clean panels</p>
+          <img class="shot" src="img/dusty.jpg" style="width:100%; height:180px" alt="Dusty solar panels">
+          <img class="shot" src="img/clean.jpg" style="width:100%; height:180px" alt="Clean solar panels">
+          <img class="shot" src="img/dusty-log.jpg" style="width:100%; height:150px; object-fit:contain; background:#22140e" alt="Mission log: power falls">
+          <img class="shot" src="img/clean-log.jpg" style="width:100%; height:150px; object-fit:contain; background:#22140e" alt="Mission log: power rises">
+        </div>
+        <p class="txt" style="color:var(--sand)">Same sol, same base, only the panels differ. Tonight's forecast: dusty, the battery falls to 47%; clean, it fills to 100%.</p>
       </div>
-      <div class="card" style="flex:1">
+      <div class="card" style="flex:.9">
         <h3>Balance proof</h3>
-        <p class="txt" style="margin-top:10px"><span id="paths">486</span> decision paths × 40 runs each</p>
-        <p class="txt" style="margin-top:34px; color:var(--sand)">Random player</p>
+        <p class="txt" style="margin-top:8px"><span id="paths">486</span> decision paths × <span id="seeds">60</span> runs each</p>
+        <p class="txt" style="margin-top:26px; color:var(--sand)">Random player</p>
         <div class="bar"><i id="bar-r" style="width:21.6%; background:var(--rust)"></i></div>
-        <p class="num rust" style="font-size:72px; margin-top:10px" id="win-r">21.6%</p>
-        <p class="txt" style="margin-top:20px; color:var(--sand)">Thoughtful player</p>
-        <div class="bar"><i id="bar-t" style="width:91.3%; background:var(--sky)"></i></div>
-        <p class="num sky" style="font-size:72px; margin-top:10px" id="win-t">91.3%</p>
-        <p class="txt" style="margin-top:14px">No single option wins on its own.</p>
+        <p class="num rust" style="font-size:64px; margin-top:8px" id="win-r">21.6%</p>
+        <p class="txt" style="margin-top:16px; color:var(--sand)">Thoughtful player</p>
+        <div class="bar"><i id="bar-t" style="width:89.2%; background:var(--sky)"></i></div>
+        <p class="num sky" style="font-size:64px; margin-top:8px" id="win-t">89.2%</p>
+        <p class="txt" style="margin-top:12px">No single option wins on its own.</p>
       </div>
     </div>
   </div>
@@ -157,18 +175,18 @@ h3 { font-size: 40px; font-weight: 600; line-height: 1.15; }
 
 <!-- 7 NEXT + LINK -->
 <section class="slide">
-  <img class="bg" src="../screenshots/01-title.png" alt="" style="filter:blur(2px)">
-  <div class="shade" style="background:rgba(26,15,11,.9)"></div>
+  <img class="bg" src="img/hero2.jpg" alt="">
+  <div class="shade" style="background:linear-gradient(90deg, rgba(26,15,11,.95) 0%, rgba(26,15,11,.9) 55%, rgba(26,15,11,.7) 100%)"></div>
   <div class="pad" style="flex-direction:row; align-items:center; gap:100px">
     <div style="flex:1">
       <p class="eyebrow">What's next</p>
       <h2 style="font-size:84px">Can you keep all six alive?</h2>
-      <p class="lead" style="margin-top:36px; color:var(--dim)">Next: a teacher mode with class statistics, more crises, and an Android app.</p>
-      <p class="txt" style="margin-top:56px; color:var(--sand); font-size:34px"><b class="rust">Play</b> mistyrose-eland-246079.hostingersite.com</p>
-      <p class="txt" style="margin-top:14px; color:var(--sand); font-size:34px"><b class="rust">Code</b> github.com/ElQammash/jezero-sol-30</p>
+      <p class="lead" style="margin-top:32px; color:var(--dim)">Next: a teacher mode with class statistics, more crises, building your own base layout, and an Android app.</p>
+      <p class="txt" style="margin-top:48px; color:var(--sand); font-size:34px"><b class="rust">Play</b> mistyrose-eland-246079.hostingersite.com</p>
+      <p class="txt" style="margin-top:12px; color:var(--sand); font-size:34px"><b class="rust">Code</b> github.com/ElQammash/jezero-sol-30</p>
     </div>
-    <div style="display:flex; flex-direction:column; align-items:center; gap:22px">
-      <div id="qr" style="width:420px; height:420px; background:var(--sand); border-radius:28px; padding:26px"></div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:20px">
+      <div id="qr" style="width:400px; height:400px; background:var(--sand); border-radius:28px; padding:26px"></div>
       <p class="txt" style="color:var(--sand)">Scan to play now</p>
     </div>
   </div>

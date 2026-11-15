@@ -254,7 +254,7 @@ function Greenhouse({ m, game }: { m: Mats; game: GameState }) {
             );
           }),
         )}
-      {active && game.settings.greenhouseOn && <mesh material={m.growLight} position={[0, 4.5, 0]}><torusGeometry args={[3, 0.08, 6, 30]} /></mesh>}
+      {active && game.settings.greenhouseOn && <mesh material={m.growLight} position={[0, 4.5, 0]} rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[3, 0.08, 6, 30]} /></mesh>}
       {active && <CropBadge game={game} />}
     </group>
   );
@@ -267,7 +267,7 @@ function CropBadge({ game }: { game: GameState }) {
   const wilting = game.greenhouseHealth < 0.6 || !game.settings.greenhouseOn;
   const stage = game.greenhouseAge < 1.5 ? 'seed' : game.greenhouseAge < TUNING.greenhouseRampSols * 0.6 ? 'sprout' : left > 0 ? 'flower' : 'harvest';
   return (
-    <Html position={[0, 8.2, 0]} center distanceFactor={22} zIndexRange={[3, 0]} style={{ pointerEvents: 'none' }}>
+    <Html position={[0, 3.2, 7.8]} center distanceFactor={16} zIndexRange={[3, 0]} style={{ pointerEvents: 'none' }}>
       <div className={`crop-badge ${wilting ? 'wilt' : ''}`}>
         <b>
           {stage === 'seed' ? '🌰' : stage === 'sprout' ? '🌱' : stage === 'flower' ? '🌿' : '🥔'} {t(`crops.${stage}`)}

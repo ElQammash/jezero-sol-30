@@ -278,3 +278,4 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .crop-badge em { font-size: 10px; color: var(--muted); font-style: normal; line-height: 1.25; }
 .memorial { padding: 3px 8px; border-radius: 8px; background: rgba(20,11,8,0.8); color: var(--text); font-size: 12px; white-space: nowrap; }
 .task .who { display: block; font-style: normal; font-size: 0.72rem; color: var(--ok); margin-top: 3px; }
+.shot-mode .title-screen, .shot-mode .hud, .shot-mode .tutorial, .shot-mode .intro { display: none !important; }
