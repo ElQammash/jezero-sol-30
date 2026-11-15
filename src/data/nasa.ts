@@ -63,7 +63,7 @@ export const NASA = {
   potatoEnergy: {
     value: 3.22, unit: 'MJ/kg', sourceName: 'USDA FoodData Central, Potatoes, flesh and skin, raw (FDC 170026). NOT NASA',
     sourceUrl: 'https://fdc.nal.usda.gov/food-details/170026/nutrients',
-    simplified: false, verification: 'secondary', nasa: false, note: '77 kcal per 100 g. Used to turn the harvest into crew-days of food.',
+    simplified: false, verification: 'primary', nasa: false, note: '77 kcal (322 kJ) per 100 g, read from the FoodData Central record. Used to turn the harvest into crew-days of food.',
   },
   issWaterRecovery: {
     value: 0.98, unit: 'fraction', sourceName: 'NASA: NASA Achieves Water Recovery Milestone on International Space Station (2023)',
@@ -101,15 +101,15 @@ export const NASA = {
     simplified: false, verification: 'secondary', nasa: true,
   },
   blueSunset: {
-    value: 956, unit: 'sol of the Curiosity mission', sourceName: 'NASA SVS: NASA’s Curiosity Sees Blue Sunset on Mars (2015)',
-    sourceUrl: 'https://svs.gsfc.nasa.gov/11875', simplified: false, verification: 'secondary', nasa: true,
+    value: 956, unit: 'sol of the Curiosity mission', sourceName: 'NASA Photojournal PIA19400: Sunset in Mars’ Gale Crater (Curiosity, 15 April 2015)',
+    sourceUrl: 'https://science.nasa.gov/photojournal/sunset-in-mars-gale-crater/', simplified: false, verification: 'primary', nasa: true,
     note: 'Fine dust lets blue light through near sunset, so Martian sunsets are blue.',
   },
 
   // ---- Radiation ----
   marsSurfaceDose: {
-    value: 0.67, unit: 'mSv/day', sourceName: 'Hassler et al. 2014, Science 343, Curiosity RAD (NASA MSL)',
-    sourceUrl: 'https://doi.org/10.1126/science.1244797', simplified: true, verification: 'secondary', nasa: true,
+    value: 0.67, unit: 'mSv/day', sourceName: 'Curiosity RAD (NASA MSL), Hassler et al. 2014, Science 343 (doi:10.1126/science.1244797), as stated by the RAD principal investigator in the SwRI release',
+    sourceUrl: 'https://swri.org/node/9079', simplified: true, verification: 'secondary', nasa: true,
     note: 'Over 30 sols this adds up to only ~20 mSv. The game’s Shield meter therefore stands for protection against solar storms and the environment.',
   },
   solarStorm2024: {
@@ -118,25 +118,25 @@ export const NASA = {
     simplified: true, verification: 'secondary', nasa: true, note: 'Largest solar storm Curiosity’s RAD measured on the surface (20 May 2024).',
   },
   waterShielding: {
-    value: 0.0574, unit: 'm of water wall', sourceName: 'NASA TransHab water-tank storm shelter; NASA RadWorks storm shelters (NTRS 20160006051)',
-    sourceUrl: 'https://ntrs.nasa.gov/citations/20160006051', simplified: true, verification: 'secondary', nasa: true,
-    note: 'Hydrogen-rich water blocks the protons of solar storms well; NASA studied using stored water as a storm shelter wall.',
+    value: 0.102, unit: 'm (one water-container wall)', sourceName: 'Dugan et al. 2015, Deep Space Storm Shelter Simulation Study (NASA Langley, RadWorks), NTRS 20160006051',
+    sourceUrl: 'https://ntrs.nasa.gov/citations/20160006051', simplified: true, verification: 'primary', nasa: true,
+    note: 'NASA’s RadWorks project studied storm shelters walled with stored water, because water “provides good shielding properties”. In this study each water-container wall is 0.102 m thick. The game’s water-wall option stands for this idea.',
   },
 
   // ---- Power and oxygen machines ----
   solarCellEfficiency: {
-    value: 0.307, unit: 'fraction', sourceName: 'NASA APPEL: ISS roll-out solar array (iROSA) cells',
-    sourceUrl: 'https://appel.nasa.gov/2021/06/29/astronauts-continue-space-station-power-upgrades',
-    simplified: false, verification: 'secondary', nasa: true,
+    value: 0.307, unit: 'fraction', sourceName: 'NASA State-of-the-Art of Small Spacecraft Technology, Power chapter: space solar cell efficiencies (Spectrolab XTJ-Prime, 30.7%)',
+    sourceUrl: 'https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/',
+    simplified: true, verification: 'primary', nasa: true, note: 'Efficiency of a modern triple-junction space solar cell. The game assumes the colony’s panels use cells of this class.',
   },
   moxieRate: {
-    value: 12, unit: 'g O₂/hour (best)', sourceName: 'NASA JPL: Perseverance MOXIE results',
-    sourceUrl: 'https://www.jpl.nasa.gov/news/nasas-perseverance-mars-rover-extracts-first-oxygen-from-red-planet/',
-    simplified: false, verification: 'secondary', nasa: true, note: 'Design goal was 6 g/h; MOXIE made 122 g in total over 16 runs.',
+    value: 12, unit: 'g O₂/hour (best)', sourceName: 'NASA: NASA’s Oxygen-Generating Experiment MOXIE Completes Mars Mission (2023)',
+    sourceUrl: 'https://www.nasa.gov/missions/mars-2020-perseverance/perseverance-rover/nasas-oxygen-generating-experiment-moxie-completes-mars-mission/',
+    simplified: false, verification: 'primary', nasa: true, note: 'Twice NASA’s original goal for the instrument. MOXIE made 122 g of oxygen in total.',
   },
   moxiePower: {
-    value: 300, unit: 'W', sourceName: 'MOXIE specifications (MIT / NASA JPL), as reported',
-    sourceUrl: 'https://science.nasa.gov/blog/a-day-full-of-moxie/', simplified: true, verification: 'secondary', nasa: true,
+    value: 300, unit: 'W', sourceName: 'NASA Science: Perseverance science instruments, MOXIE (Power: 300 watts)',
+    sourceUrl: 'https://science.nasa.gov/mission/mars-2020-perseverance/science-instruments/', simplified: true, verification: 'primary', nasa: true,
     note: 'About 25–50 kWh per kg of oxygen at MOXIE’s size. A crew-size unit is assumed to reach the efficient end of that range.',
   },
   dustStormTau2018: {
@@ -156,13 +156,14 @@ export const NASA = {
     simplified: false, verification: 'secondary', nasa: true, note: 'Planned for 5 flights; flew 72 times from 2021 to January 2024.',
   },
   lightDelayMin: {
-    value: 3, unit: 'minutes', sourceName: 'NASA Mars Relay Network figure (3 to 22.4 min); game delay computed with JPL approximate planet positions',
-    sourceUrl: 'https://ssd.jpl.nasa.gov/planets/approx_pos.html', simplified: false, verification: 'secondary', nasa: true,
-    note: 'The game computes the real Earth–Mars distance for the mission date with JPL’s approximate planet positions.',
+    value: 3, unit: 'minutes', sourceName: 'Derived from the NASA Mars Fact Sheet: minimum Earth–Mars distance 54.6 million km ÷ speed of light',
+    sourceUrl: 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html', simplified: false, verification: 'derived', nasa: true,
+    note: '54.6 million km takes 3.0 minutes at the speed of light. The game computes the real distance for the mission date with JPL’s approximate planet positions (ssd.jpl.nasa.gov/planets/approx_pos.html).',
   },
   lightDelayMax: {
-    value: 22.4, unit: 'minutes', sourceName: 'NASA Mars Relay Network figure (farthest, 400.2 million km); JPL approximate planet positions',
-    sourceUrl: 'https://ssd.jpl.nasa.gov/planets/approx_pos.html', simplified: false, verification: 'secondary', nasa: true,
+    value: 22.3, unit: 'minutes', sourceName: 'Derived from the NASA Mars Fact Sheet: maximum Earth–Mars distance 401.4 million km ÷ speed of light',
+    sourceUrl: 'https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html', simplified: false, verification: 'derived', nasa: true,
+    note: '401.4 million km takes 22.3 minutes at the speed of light.',
   },
 } as const satisfies Record<string, DataEntry>;
 

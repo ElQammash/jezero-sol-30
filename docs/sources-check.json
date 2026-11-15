@@ -1,0 +1,303 @@
+{
+  "checkedAt": "2026-11-15T17:52:52.668Z",
+  "rows": [
+    {
+      "key": "oxygenPerCrewDay",
+      "value": "0.816 kg/crew-day",
+      "url": "https://ntrs.nasa.gov/citations/20180001338",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180001338/downloads/20180001338.pdf",
+      "status": 200,
+      "found": "0.816",
+      "result": "verified"
+    },
+    {
+      "key": "co2PerCrewDay",
+      "value": "1.04 kg/crew-day",
+      "url": "https://ntrs.nasa.gov/citations/20180001338",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180001338/downloads/20180001338.pdf",
+      "status": 200,
+      "found": "1.04",
+      "result": "verified"
+    },
+    {
+      "key": "waterPerCrewDay",
+      "value": "2.5 kg/crew-day",
+      "url": "https://ntrs.nasa.gov/citations/20180001338",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180001338/downloads/20180001338.pdf",
+      "status": 200,
+      "found": "2.5",
+      "result": "verified"
+    },
+    {
+      "key": "packagedFoodPerCrewDay",
+      "value": "1.83 kg/crew-day",
+      "url": "https://ntrs.nasa.gov/citations/20180001338",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180001338/downloads/20180001338.pdf",
+      "status": 200,
+      "found": "1.83",
+      "result": "verified"
+    },
+    {
+      "key": "foodEnergyPerCrewDay",
+      "value": "12.59 MJ/crew-day",
+      "url": "https://ntrs.nasa.gov/citations/20180001338",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180001338/downloads/20180001338.pdf",
+      "status": 200,
+      "found": "12.59",
+      "result": "verified"
+    },
+    {
+      "key": "potatoYield",
+      "value": "105.3 g fresh food/m²/day",
+      "url": "https://ntrs.nasa.gov/citations/20180001338",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180001338/downloads/20180001338.pdf",
+      "status": 200,
+      "found": "105.3",
+      "result": "verified"
+    },
+    {
+      "key": "potatoOxygen",
+      "value": "32.23 g O₂/m²/day",
+      "url": "https://ntrs.nasa.gov/citations/20180001338",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180001338/downloads/20180001338.pdf",
+      "status": 200,
+      "found": "32.23",
+      "result": "verified"
+    },
+    {
+      "key": "potatoEnergy",
+      "value": "3.22 MJ/kg",
+      "url": "https://fdc.nal.usda.gov/food-details/170026/nutrients",
+      "evidence": "https://api.nal.usda.gov/fdc/v1/food/170026?api_key=DEMO_KEY&format=abridged",
+      "status": 200,
+      "found": "\"amount\":322",
+      "result": "verified"
+    },
+    {
+      "key": "issWaterRecovery",
+      "value": "0.98 fraction",
+      "url": "https://www.nasa.gov/missions/station/iss-research/nasa-achieves-water-recovery-milestone-on-international-space-station/",
+      "evidence": "https://www.nasa.gov/missions/station/iss-research/nasa-achieves-water-recovery-milestone-on-international-space-station/",
+      "status": 200,
+      "found": "98%",
+      "result": "verified"
+    },
+    {
+      "key": "electrolysisWater",
+      "value": "1.125 kg water per kg O₂",
+      "url": "https://ntrs.nasa.gov/citations/20180001338",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180001338/downloads/20180001338.pdf",
+      "status": 200,
+      "found": null,
+      "result": "derived (no lookup)"
+    },
+    {
+      "key": "solarIrradianceMars",
+      "value": "586.2 W/m²",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "evidence": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "status": 200,
+      "found": "586.2",
+      "result": "verified"
+    },
+    {
+      "key": "solDuration",
+      "value": "24.6597 hours",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "evidence": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "status": 200,
+      "found": "24.6597",
+      "result": "verified"
+    },
+    {
+      "key": "marsGravity",
+      "value": "0.38 × Earth",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "evidence": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "status": 200,
+      "found": "0.38",
+      "result": "verified"
+    },
+    {
+      "key": "marsCO2",
+      "value": "95.1 % of the air",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "evidence": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "status": 200,
+      "found": "95.1",
+      "result": "verified"
+    },
+    {
+      "key": "marsPressure",
+      "value": "6.36 mbar",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "evidence": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "status": 200,
+      "found": "6.36",
+      "result": "verified"
+    },
+    {
+      "key": "marsNightTemp",
+      "value": "-70 °C",
+      "url": "https://science.nasa.gov/photojournal/steady-temperatures-at-mars-gale-crater",
+      "evidence": "https://science.nasa.gov/photojournal/steady-temperatures-at-mars-gale-crater",
+      "status": 200,
+      "found": "minus 70",
+      "result": "verified"
+    },
+    {
+      "key": "marsDayTemp",
+      "value": "0 °C",
+      "url": "https://science.nasa.gov/photojournal/steady-temperatures-at-mars-gale-crater",
+      "evidence": "https://science.nasa.gov/photojournal/steady-temperatures-at-mars-gale-crater",
+      "status": 200,
+      "found": "32 degrees",
+      "result": "verified"
+    },
+    {
+      "key": "blueSunset",
+      "value": "956 sol of the Curiosity mission",
+      "url": "https://science.nasa.gov/photojournal/sunset-in-mars-gale-crater/",
+      "evidence": "https://science.nasa.gov/photojournal/sunset-in-mars-gale-crater/",
+      "status": 200,
+      "found": "956th Martian day",
+      "result": "verified"
+    },
+    {
+      "key": "marsSurfaceDose",
+      "value": "0.67 mSv/day",
+      "url": "https://swri.org/node/9079",
+      "evidence": "https://swri.org/node/9079",
+      "status": 200,
+      "found": "0.67 millisieverts per day",
+      "result": "verified"
+    },
+    {
+      "key": "solarStorm2024",
+      "value": "8.1 mGy in one event",
+      "url": "https://www.nasa.gov/solar-system/planets/mars/nasa-watches-mars-light-up-during-epic-solar-storm",
+      "evidence": "https://www.nasa.gov/solar-system/planets/mars/nasa-watches-mars-light-up-during-epic-solar-storm",
+      "status": 200,
+      "found": "8,100",
+      "result": "verified"
+    },
+    {
+      "key": "waterShielding",
+      "value": "0.102 m (one water-container wall)",
+      "url": "https://ntrs.nasa.gov/citations/20160006051",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20160006051/downloads/20160006051.pdf",
+      "status": 200,
+      "found": "0.102",
+      "result": "verified"
+    },
+    {
+      "key": "solarCellEfficiency",
+      "value": "0.307 fraction",
+      "url": "https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/",
+      "evidence": "https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/",
+      "status": 200,
+      "found": "XTJ-Prime 30.7",
+      "result": "verified"
+    },
+    {
+      "key": "moxieRate",
+      "value": "12 g O₂/hour (best)",
+      "url": "https://www.nasa.gov/missions/mars-2020-perseverance/perseverance-rover/nasas-oxygen-generating-experiment-moxie-completes-mars-mission/",
+      "evidence": "https://www.nasa.gov/missions/mars-2020-perseverance/perseverance-rover/nasas-oxygen-generating-experiment-moxie-completes-mars-mission/",
+      "status": 200,
+      "found": "12 grams of oxygen an hour",
+      "result": "verified"
+    },
+    {
+      "key": "moxiePower",
+      "value": "300 W",
+      "url": "https://science.nasa.gov/mission/mars-2020-perseverance/science-instruments/",
+      "evidence": "https://science.nasa.gov/mission/mars-2020-perseverance/science-instruments/",
+      "status": 200,
+      "found": "Power 300 watts",
+      "result": "verified"
+    },
+    {
+      "key": "dustStormTau2018",
+      "value": "10.8 optical depth (tau)",
+      "url": "https://www.jpl.nasa.gov/news/opportunity-hunkers-down-during-dust-storm/",
+      "evidence": "https://www.jpl.nasa.gov/news/opportunity-hunkers-down-during-dust-storm/",
+      "status": 202,
+      "found": null,
+      "result": "reachable, value not in page text"
+    },
+    {
+      "key": "kilopowerOutput",
+      "value": "10 kWe (up to)",
+      "url": "https://ntrs.nasa.gov/citations/20180005435",
+      "evidence": "https://ntrs.nasa.gov/api/citations/20180005435/downloads/20180005435.pdf",
+      "status": 200,
+      "found": "10 kW",
+      "result": "verified"
+    },
+    {
+      "key": "ingenuityFlights",
+      "value": "72 flights",
+      "url": "https://www.livescience.com/space/mars/nasas-historic-ingenuity-helicopter-ends-its-3-year-mars-mission-suffering-rotor-damage-on-72nd-flight",
+      "evidence": "https://www.livescience.com/space/mars/nasas-historic-ingenuity-helicopter-ends-its-3-year-mars-mission-suffering-rotor-damage-on-72nd-flight",
+      "status": 200,
+      "found": "72",
+      "result": "verified"
+    },
+    {
+      "key": "lightDelayMin",
+      "value": "3 minutes",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "evidence": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "status": 200,
+      "found": "54.6",
+      "result": "verified"
+    },
+    {
+      "key": "lightDelayMax",
+      "value": "22.3 minutes",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "evidence": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "status": 200,
+      "found": "401.4",
+      "result": "verified"
+    }
+  ],
+  "assetRows": [
+    {
+      "name": "HiRISE DTM DTEEC_045994_1985_046060_1985_U01 (USGS ARD)",
+      "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/hirise/controlled/dtm/ESP_045994_1985_ESP_046060_1985/DTEEC_045994_1985_046060_1985_U01.tif",
+      "status": 206
+    },
+    {
+      "name": "HiRISE observation ESP_045994_1985",
+      "url": "https://www.uahirise.org/ESP_045994_1985",
+      "status": 200
+    },
+    {
+      "name": "CTX DTM P02_001820_1984_XI_18N282W__P06_003442_1987_XI_18N282W (USGS ARD)",
+      "url": "https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/ctx/controlled/usgs/P02_001820_1984_XI_18N282W__P06_003442_1987_XI_18N282W/P02_001820_1984_XI_18N282W__P06_003442_1987_XI_18N282W_dtm.tif",
+      "status": 206
+    },
+    {
+      "name": "NASA Perseverance 3D model page",
+      "url": "https://science.nasa.gov/resource/mars-perseverance-rover-3d-model/",
+      "status": 200
+    },
+    {
+      "name": "NASA Perseverance glTF file",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/mars/resources/gltf_files/25042_Perseverance.glb",
+      "status": 206
+    },
+    {
+      "name": "Perseverance microphone: first sounds (wind)",
+      "url": "https://science.nasa.gov/resource/nasas-perseverance-rover-microphone-captures-sounds-from-mars/",
+      "status": 200
+    },
+    {
+      "name": "Perseverance microphone: rover driving, sol 16",
+      "url": "https://science.nasa.gov/resource/sounds-of-perseverance-mars-rover-driving-sol-16-90-second-highlights/",
+      "status": 200
+    }
+  ]
+}
