@@ -279,3 +279,18 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .memorial { padding: 3px 8px; border-radius: 8px; background: rgba(20,11,8,0.8); color: var(--text); font-size: 12px; white-space: nowrap; }
 .task .who { display: block; font-style: normal; font-size: 0.72rem; color: var(--ok); margin-top: 3px; }
 .shot-mode .title-screen, .shot-mode .hud, .shot-mode .tutorial, .shot-mode .intro { display: none !important; }
+
+/* ---------- hint cards ---------- */
+.hint-overlay { z-index: 70; }
+.hint-card { max-inline-size: min(560px, 94vw); text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.hint-card img { inline-size: 100%; block-size: auto; aspect-ratio: 16 / 9; border-radius: 12px; border: 1px solid var(--edge); background: #2a1810; }
+.hint-card h3 { margin: 4px 0 0; font-size: 1.25rem; }
+.hint-card p { margin: 0 0 6px; font-size: 1.08rem; line-height: 1.45; }
+.hint-gallery { max-inline-size: min(900px, 96vw); }
+.gallery-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-block-end: 10px; }
+.gallery-head h2 { margin: 0; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; margin-block-end: 12px; }
+.gallery-item { display: flex; flex-direction: column; gap: 6px; padding: 6px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid var(--edge); color: var(--text); text-align: start; }
+.gallery-item img { inline-size: 100%; block-size: auto; aspect-ratio: 16 / 9; border-radius: 8px; background: #2a1810; }
+.gallery-item b { font-size: 0.85rem; }
+.help-btn { font-weight: 900; }

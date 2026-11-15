@@ -55,6 +55,11 @@ for (let step = 0; step < 200; step++) {
     if (process.env.SHOT) await page.screenshot({ path: process.env.SHOT });
     break;
   }
+  if (await click('.hint-card .btn.primary')) {
+    log.push('  hint card: dismissed');
+    await sleep(250);
+    continue;
+  }
   if (await click('.tut-actions .btn.ghost')) {
     log.push('  tutorial: skipped');
     await sleep(300);

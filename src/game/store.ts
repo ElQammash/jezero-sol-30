@@ -19,6 +19,7 @@ import {
 } from '../engine';
 import type { Gender, Lang } from '../i18n';
 import { pushCloud, type CloudBlob } from './cloud';
+import { loadHintPrefs, markSeen, saveHintPrefs, shouldShow, type HintId, type HintPrefs } from './hints';
 import type { Quality } from './World';
 import type { SiteId } from './world/Base';
 
@@ -90,6 +91,17 @@ interface Store {
   tutorialStep: number | null;
   tutorialDone: boolean;
   setTutorial: (step: number | null, done?: boolean) => void;
+  tutorialSkipped: boolean;
+  /** Hint card on screen (first-time situations), and the player's hint settings. */
+  hint: HintId | null;
+  hintPrefs: HintPrefs;
+  galleryOpen: boolean;
+  tryHint: (id: HintId) => void;
+  openHint: (id: HintId) => void;
+  dismissHint: () => void;
+  setHintsOff: (off: boolean) => void;
+  resetHints: () => void;
+  setGallery: (open: boolean) => void;
   logOpen: boolean;
   setLang: (l: Lang) => void;
   setGender: (g: Gender) => void;
@@ -171,6 +183,7 @@ export function localUpdatedAt(): number {
 const saved = loadSave();
 
 const TUTORIAL_KEY = 'jezero-tutorial-done';
+export const SKIPPED_KEY = 'jezero-tutorial-skipped';
 export function readFlag(key: string): boolean {
   try {
     return localStorage.getItem(key) === '1';
@@ -221,6 +234,34 @@ export const useGame = create<Store>((set, get) => {
       if (done !== undefined) writeFlag(TUTORIAL_KEY, done);
       set({ tutorialStep, ...(done !== undefined ? { tutorialDone: done } : {}) });
     },
+    tutorialSkipped: readFlag(SKIPPED_KEY),
+    hint: null,
+    hintPrefs: loadHintPrefs(),
+    galleryOpen: false,
+    tryHint: (id) => {
+      const s = get();
+      if (s.screen === 'title' || s.screen === 'intro') return;
+      if (shouldShow(id, s.hintPrefs, { open: s.hint, training: s.tutorialStep !== null, trainingSkipped: s.tutorialSkipped })) set({ hint: id });
+    },
+    openHint: (id) => set({ hint: id }),
+    dismissHint: () => {
+      const s = get();
+      if (!s.hint) return;
+      const hintPrefs = markSeen(s.hintPrefs, s.hint);
+      saveHintPrefs(hintPrefs);
+      set({ hint: null, hintPrefs });
+    },
+    setHintsOff: (off) => {
+      const hintPrefs = { ...get().hintPrefs, off };
+      saveHintPrefs(hintPrefs);
+      set({ hintPrefs });
+    },
+    resetHints: () => {
+      const hintPrefs = { seen: [], off: false };
+      saveHintPrefs(hintPrefs);
+      set({ hintPrefs });
+    },
+    setGallery: (galleryOpen) => set({ galleryOpen }),
     setLang: (lang) => after({ lang }),
     setGender: (gender) => after({ gender }),
     setQuality: (quality) => after({ quality }),
@@ -269,7 +310,7 @@ export const useGame = create<Store>((set, get) => {
     },
     clockRunning: () => {
       const s = get();
-      return s.screen === 'play' && s.modal === null && !s.action && !s.game.pendingStage && s.game.status === 'playing' && s.holds === 0 && s.tutorialStep === null && (s.speed > 0 || s.sleeping);
+      return s.screen === 'play' && s.modal === null && !s.action && !s.game.pendingStage && s.game.status === 'playing' && s.holds === 0 && s.tutorialStep === null && s.hint === null && !s.galleryOpen && (s.speed > 0 || s.sleeping);
     },
     tick: (dt) => {
       const s = get();

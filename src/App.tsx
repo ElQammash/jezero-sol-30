@@ -8,6 +8,7 @@ import { SITES, type SiteId } from './game/world/Base';
 import { useWorld } from './game/worldStore';
 import Hud from './ui/Hud';
 import Tutorial from './ui/Tutorial';
+import { HintCard, HintDirector, HintGallery } from './ui/Hints';
 import { Computer, OutcomeModal, StageModal } from './ui/Modals';
 import { EndScreen, Intro, TitleScreen } from './ui/Screens';
 
@@ -95,10 +96,13 @@ export default function App() {
           {modal === 'outcome' && <OutcomeModal />}
           {modal === 'computer' && <Computer />}
           <Tutorial />
+          <HintGallery />
 
         </>
       )}
       {screen === 'end' && <EndScreen />}
+      <HintCard />
+      <HintDirector />
     </>
   );
 }

@@ -364,6 +364,9 @@ export default function Hud() {
           <button type="button" className="mini-btn" onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}>
             {lang === 'en' ? 'ع' : 'EN'}
           </button>
+          <button type="button" className="mini-btn help-btn" title={t('hints.help')} aria-label={t('hints.help')} onClick={() => (sfx('click'), useGame.getState().setGallery(true))}>
+            ?
+          </button>
           <button type="button" className="mini-btn" onClick={() => setMuted(!muted)} aria-pressed={muted}>
             {muted ? '🔇' : '🔊'}
           </button>

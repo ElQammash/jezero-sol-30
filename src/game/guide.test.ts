@@ -74,3 +74,27 @@ describe('crew jobs', () => {
     expect(jobProgress(0.99)).toBe(1);
   });
 });
+
+import { HINTS, markSeen, shouldShow, type HintPrefs } from './hints';
+describe('hint cards', () => {
+  const ctx = { open: null, training: false, trainingSkipped: false };
+  it('shows a later-event hint once, then never again', () => {
+    let p: HintPrefs = { seen: [], off: false };
+    expect(shouldShow('storm', p, ctx)).toBe(true);
+    p = markSeen(p, 'storm');
+    expect(shouldShow('storm', p, ctx)).toBe(false);
+    expect(markSeen(p, 'storm').seen).toEqual(['storm']);
+  });
+  it('respects hints off, an open card and the training', () => {
+    const p: HintPrefs = { seen: [], off: false };
+    expect(shouldShow('crisis', { ...p, off: true }, ctx)).toBe(false);
+    expect(shouldShow('crisis', p, { ...ctx, open: 'storm' })).toBe(false);
+    expect(shouldShow('crisis', p, { ...ctx, training: true })).toBe(false);
+  });
+  it('does not repeat what the training teaches unless it was skipped', () => {
+    const p: HintPrefs = { seen: [], off: false };
+    expect(shouldShow('move', p, ctx)).toBe(false);
+    expect(shouldShow('move', p, { ...ctx, trainingSkipped: true })).toBe(true);
+    expect(HINTS.length).toBeGreaterThanOrEqual(13);
+  });
+});

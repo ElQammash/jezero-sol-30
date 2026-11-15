@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { input } from '../game/input';
 import { sfx } from '../game/sound';
 import { guide } from '../game/spots';
-import { useGame } from '../game/store';
+import { SKIPPED_KEY, useGame, writeFlag } from '../game/store';
 import { useT } from '../game/useT';
 import { useWorld } from '../game/worldStore';
 
@@ -139,6 +139,8 @@ export default function Tutorial() {
   const rect = useAnchor(cur?.point);
   const skip = () => {
     guide.override = null;
+    writeFlag(SKIPPED_KEY, true);
+    useGame.setState({ tutorialSkipped: true });
     setTutorial(null, true);
   };
 
