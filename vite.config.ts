@@ -31,7 +31,9 @@ export default defineConfig({
         // the whole game (code, real terrain, NASA model and sounds) is cached for offline play
         globPatterns: ['**/*.{js,css,html,svg,png,bin,json,glb,mp3,webp}'],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
-        navigateFallbackDenylist: [/\/api\//],
+        // the presentation and demo deck are separate pages, not part of the offline game
+        navigateFallbackDenylist: [/\/api\//, /\/presentation\//, /\/demo\//],
+        globIgnores: ['presentation/**', 'demo/**'],
       },
     }),
   ],

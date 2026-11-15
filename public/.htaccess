@@ -1,4 +1,4 @@
-# Regolith Rising static hosting rules (Apache / LiteSpeed, e.g. Hostinger)
+# Jezero: Sol 30 static hosting rules (Apache / LiteSpeed, e.g. Hostinger)
 Options -Indexes
 DirectoryIndex index.html
 

@@ -1,5 +1,7 @@
 // Render a Markdown doc to a styled PDF with headless Chrome: node scripts/make-pdf.mjs docs/PROJECT.md docs/PROJECT.pdf
-import { readFileSync } from 'node:fs';
+import { readFileSync, unlinkSync, writeFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { marked } from 'marked';
 import puppeteer from 'puppeteer-core';
 const [src = 'docs/PROJECT.md', out = 'docs/PROJECT.pdf'] = process.argv.slice(2);
@@ -18,11 +20,16 @@ th { background: #fbefe7; } tr { page-break-inside: avoid; }
 code { background: #f5ece6; padding: 0 3px; border-radius: 3px; font-size: 8.8pt; }
 pre { background: #f5ece6; padding: 8px; border-radius: 6px; font-size: 8.5pt; white-space: pre-wrap; }
 blockquote { margin: 8px 0; padding: 8px 12px; background: #fdf4ee; border-inline-start: 4px solid #e2763a; }
+img { max-width: 100%; border-radius: 6px; }
 a { color: #b4471b; text-decoration: none; word-break: break-word; }
 </style></head><body>${body}</body></html>`;
 const b = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new' });
 const pg = await b.newPage();
-await pg.setContent(html, { waitUntil: 'load' });
+// load from a file next to the source so relative images (screenshots, GIF) resolve
+const tmp = resolve(dirname(src), '.pdf-tmp.html');
+writeFileSync(tmp, html);
+await pg.goto(pathToFileURL(tmp).href, { waitUntil: 'load' });
+unlinkSync(tmp);
 await pg.pdf({ path: out, format: 'A4', printBackground: true, displayHeaderFooter: true, headerTemplate: '<span></span>', footerTemplate: '<div style="font-size:8px;width:100%;text-align:center;color:#999">Jezero: Sol 30 · Team AstraQuest · Malak Tamer Said Ahmad &amp; Rowina Walid Abdul Rahman · <span class="pageNumber"></span></div>', margin: { top: '15mm', bottom: '15mm', left: '13mm', right: '13mm' } });
 await b.close();
 console.log('wrote', out);

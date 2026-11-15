@@ -69,3 +69,13 @@ Multiplayer, a native app-store release, a teacher dashboard, and voice-over.
 | Asset licensing | Only NASA/USGS public-domain data and our own code |
 | Players getting lost | Beacon, direction arrow, objectives |
 | Balance | Exhaustive path analysis and automated play-tests |
+
+## Addendum: final upgrade (15 Nov 2026)
+Shipped after the competitor review (`docs/COMPETITOR_REVIEW.md`). The decisions are in `docs/DECISIONS.md`.
+- **Living sol:** a real-time clock (180 s per sol at 1×) with pause/1×/2×/4×, live meters that land exactly on the engine result, a Mission Log, a "Sol N begins" message, and an optional "Sleep until morning".
+- **Guidance:** a sol-1 training with a pointing hand, ground arrows routed around buildings, a daily goal from engine state, and 13 illustrated hint cards with a "?" gallery and hints on/off.
+- **Crew that work:** jobs go to named crew by role; they walk to the job, work with a progress bar and countdown, and go inside at night.
+- **Visible consequences:** crop stages with a harvest countdown and an honest note about growing time, reactor light, damaged antenna, medbay cross, abandoned rover, memorial.
+- **Sources:** every source re-checked by script. 10 values were fixed or re-sourced (`docs/SOURCES_CHECK.md`).
+- **Cut for time:** placing buildings where the player wants them.
+- **Submission:** a 7-slide demo PDF, a full presentation with a source on every slide, a gameplay GIF and annotated images.
