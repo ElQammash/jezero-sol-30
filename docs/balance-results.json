@@ -1,0 +1,2016 @@
+{
+  "seedsPerPath": 40,
+  "random": {
+    "wins": 432,
+    "n": 2000,
+    "stars": 677,
+    "losses": {
+      "oxygen": 903,
+      "crewLost": 641,
+      "shieldLow": 24,
+      "colonyDark": 0
+    },
+    "endSol": 52201
+  },
+  "randomChoicesCarefulDays": {
+    "wins": 969,
+    "n": 2000,
+    "stars": 1134,
+    "losses": {
+      "oxygen": 588,
+      "crewLost": 443,
+      "shieldLow": 0,
+      "colonyDark": 0
+    },
+    "endSol": 54744
+  },
+  "thoughtful": {
+    "wins": 73,
+    "n": 80,
+    "stars": 94,
+    "losses": {
+      "oxygen": 6,
+      "crewLost": 1,
+      "shieldLow": 0,
+      "colonyDark": 0
+    },
+    "endSol": 2369
+  },
+  "optionAvg": {
+    "habitat": {
+      "A": 0.44434156378600825,
+      "B": 0.5170781893004119
+    },
+    "lifeSupport": {
+      "A": 0.4824074074074072,
+      "B": 0.3293209876543209,
+      "C": 0.6304012345679011
+    },
+    "power": {
+      "A": 0.5030864197530867,
+      "B": 0.4848765432098766,
+      "C": 0.4541666666666666
+    },
+    "mobility": {
+      "A": 0.6157407407407403,
+      "B": 0.642592592592593,
+      "C": 0.18379629629629624
+    },
+    "communication": {
+      "A": 0.5669753086419753,
+      "B": 0.49320987654321063,
+      "C": 0.3819444444444442
+    },
+    "safety": {
+      "A": 0.5012345679012349,
+      "B": 0.5459876543209881,
+      "C": 0.3949074074074074
+    }
+  },
+  "paths": [
+    {
+      "path": "BCBBAA",
+      "winRate": 1
+    },
+    {
+      "path": "BCBBAB",
+      "winRate": 1
+    },
+    {
+      "path": "BCBBCA",
+      "winRate": 1
+    },
+    {
+      "path": "BCBBCB",
+      "winRate": 1
+    },
+    {
+      "path": "BCABAB",
+      "winRate": 0.975
+    },
+    {
+      "path": "BCABCB",
+      "winRate": 0.975
+    },
+    {
+      "path": "BCBCAB",
+      "winRate": 0.975
+    },
+    {
+      "path": "BCBCCB",
+      "winRate": 0.975
+    },
+    {
+      "path": "ABCBAB",
+      "winRate": 0.95
+    },
+    {
+      "path": "BCABAA",
+      "winRate": 0.95
+    },
+    {
+      "path": "BCABCA",
+      "winRate": 0.95
+    },
+    {
+      "path": "BCBAAB",
+      "winRate": 0.95
+    },
+    {
+      "path": "BCBACB",
+      "winRate": 0.95
+    },
+    {
+      "path": "BCCBAB",
+      "winRate": 0.95
+    },
+    {
+      "path": "ABCCAB",
+      "winRate": 0.925
+    },
+    {
+      "path": "ACBBAB",
+      "winRate": 0.925
+    },
+    {
+      "path": "ACBBBA",
+      "winRate": 0.925
+    },
+    {
+      "path": "ACBBBB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BABAAA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BABAAB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BABACA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BABACB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BACAAA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BACAAB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BACACA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BACACB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BBCAAA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCACAB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCACCB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCBBBA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCBBBB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCBCAA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCBCCA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCCAAA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCCAAB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCCACA",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCCACB",
+      "winRate": 0.925
+    },
+    {
+      "path": "BCCBCB",
+      "winRate": 0.925
+    },
+    {
+      "path": "AABBAA",
+      "winRate": 0.9
+    },
+    {
+      "path": "AABBAB",
+      "winRate": 0.9
+    },
+    {
+      "path": "AABBBA",
+      "winRate": 0.9
+    },
+    {
+      "path": "AABBBB",
+      "winRate": 0.9
+    },
+    {
+      "path": "AABBCA",
+      "winRate": 0.9
+    },
+    {
+      "path": "AABBCB",
+      "winRate": 0.9
+    },
+    {
+      "path": "AACBAA",
+      "winRate": 0.9
+    },
+    {
+      "path": "AACBAB",
+      "winRate": 0.9
+    },
+    {
+      "path": "AACBBA",
+      "winRate": 0.9
+    },
+    {
+      "path": "AACBBB",
+      "winRate": 0.9
+    },
+    {
+      "path": "AACBCA",
+      "winRate": 0.9
+    },
+    {
+      "path": "AACBCB",
+      "winRate": 0.9
+    },
+    {
+      "path": "ABABAA",
+      "winRate": 0.9
+    },
+    {
+      "path": "ABABAB",
+      "winRate": 0.9
+    },
+    {
+      "path": "ABACAA",
+      "winRate": 0.9
+    },
+    {
+      "path": "ABACAB",
+      "winRate": 0.9
+    },
+    {
+      "path": "ACBBAA",
+      "winRate": 0.9
+    },
+    {
+      "path": "ACCBBB",
+      "winRate": 0.9
+    },
+    {
+      "path": "BBAAAA",
+      "winRate": 0.9
+    },
+    {
+      "path": "BCBAAA",
+      "winRate": 0.9
+    },
+    {
+      "path": "BCBACA",
+      "winRate": 0.9
+    },
+    {
+      "path": "BCBCBB",
+      "winRate": 0.9
+    },
+    {
+      "path": "ACBBCA",
+      "winRate": 0.875
+    },
+    {
+      "path": "ACBBCB",
+      "winRate": 0.875
+    },
+    {
+      "path": "ACCBAB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BABABA",
+      "winRate": 0.875
+    },
+    {
+      "path": "BABABB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BABBAA",
+      "winRate": 0.875
+    },
+    {
+      "path": "BABBAB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BABBCA",
+      "winRate": 0.875
+    },
+    {
+      "path": "BABBCB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BACABA",
+      "winRate": 0.875
+    },
+    {
+      "path": "BACABB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BACBAA",
+      "winRate": 0.875
+    },
+    {
+      "path": "BACBAB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BACBCA",
+      "winRate": 0.875
+    },
+    {
+      "path": "BACBCB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BCBABB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BCCABA",
+      "winRate": 0.875
+    },
+    {
+      "path": "BCCABB",
+      "winRate": 0.875
+    },
+    {
+      "path": "BCCBAA",
+      "winRate": 0.875
+    },
+    {
+      "path": "BCCBCA",
+      "winRate": 0.875
+    },
+    {
+      "path": "AAAAAA",
+      "winRate": 0.85
+    },
+    {
+      "path": "AAAAAB",
+      "winRate": 0.85
+    },
+    {
+      "path": "AAAACA",
+      "winRate": 0.85
+    },
+    {
+      "path": "AAAACB",
+      "winRate": 0.85
+    },
+    {
+      "path": "AAABAA",
+      "winRate": 0.85
+    },
+    {
+      "path": "AAABAB",
+      "winRate": 0.85
+    },
+    {
+      "path": "AAABCA",
+      "winRate": 0.85
+    },
+    {
+      "path": "AAABCB",
+      "winRate": 0.85
+    },
+    {
+      "path": "ACAAAB",
+      "winRate": 0.85
+    },
+    {
+      "path": "ACAACB",
+      "winRate": 0.85
+    },
+    {
+      "path": "ACCBAA",
+      "winRate": 0.85
+    },
+    {
+      "path": "ACCBBA",
+      "winRate": 0.85
+    },
+    {
+      "path": "ACCBCB",
+      "winRate": 0.85
+    },
+    {
+      "path": "BAABAA",
+      "winRate": 0.85
+    },
+    {
+      "path": "BAABAB",
+      "winRate": 0.85
+    },
+    {
+      "path": "BAABCA",
+      "winRate": 0.85
+    },
+    {
+      "path": "BAABCB",
+      "winRate": 0.85
+    },
+    {
+      "path": "BCBABA",
+      "winRate": 0.85
+    },
+    {
+      "path": "BCBCBA",
+      "winRate": 0.85
+    },
+    {
+      "path": "BCCBBB",
+      "winRate": 0.85
+    },
+    {
+      "path": "ABAAAB",
+      "winRate": 0.825
+    },
+    {
+      "path": "ABACBB",
+      "winRate": 0.825
+    },
+    {
+      "path": "ABBAAA",
+      "winRate": 0.825
+    },
+    {
+      "path": "ABCAAA",
+      "winRate": 0.825
+    },
+    {
+      "path": "ACABAA",
+      "winRate": 0.825
+    },
+    {
+      "path": "ACABAB",
+      "winRate": 0.825
+    },
+    {
+      "path": "ACABCA",
+      "winRate": 0.825
+    },
+    {
+      "path": "ACABCB",
+      "winRate": 0.825
+    },
+    {
+      "path": "BBBAAB",
+      "winRate": 0.825
+    },
+    {
+      "path": "BBCAAB",
+      "winRate": 0.825
+    },
+    {
+      "path": "BCABBB",
+      "winRate": 0.825
+    },
+    {
+      "path": "BCCBAC",
+      "winRate": 0.825
+    },
+    {
+      "path": "AABAAA",
+      "winRate": 0.8
+    },
+    {
+      "path": "AABAAB",
+      "winRate": 0.8
+    },
+    {
+      "path": "AABABA",
+      "winRate": 0.8
+    },
+    {
+      "path": "AABABB",
+      "winRate": 0.8
+    },
+    {
+      "path": "AABACA",
+      "winRate": 0.8
+    },
+    {
+      "path": "AABACB",
+      "winRate": 0.8
+    },
+    {
+      "path": "AACAAA",
+      "winRate": 0.8
+    },
+    {
+      "path": "AACAAB",
+      "winRate": 0.8
+    },
+    {
+      "path": "AACABA",
+      "winRate": 0.8
+    },
+    {
+      "path": "AACABB",
+      "winRate": 0.8
+    },
+    {
+      "path": "AACACA",
+      "winRate": 0.8
+    },
+    {
+      "path": "AACACB",
+      "winRate": 0.8
+    },
+    {
+      "path": "ABACBA",
+      "winRate": 0.8
+    },
+    {
+      "path": "ABBAAB",
+      "winRate": 0.8
+    },
+    {
+      "path": "ABCAAB",
+      "winRate": 0.8
+    },
+    {
+      "path": "ACABBA",
+      "winRate": 0.8
+    },
+    {
+      "path": "ACABBB",
+      "winRate": 0.8
+    },
+    {
+      "path": "ACBAAA",
+      "winRate": 0.8
+    },
+    {
+      "path": "ACBAAB",
+      "winRate": 0.8
+    },
+    {
+      "path": "BABBBA",
+      "winRate": 0.8
+    },
+    {
+      "path": "BABBBB",
+      "winRate": 0.8
+    },
+    {
+      "path": "BACBBA",
+      "winRate": 0.8
+    },
+    {
+      "path": "BACBBB",
+      "winRate": 0.8
+    },
+    {
+      "path": "BBAAAB",
+      "winRate": 0.8
+    },
+    {
+      "path": "BBACBB",
+      "winRate": 0.8
+    },
+    {
+      "path": "BBBABA",
+      "winRate": 0.8
+    },
+    {
+      "path": "BBCABA",
+      "winRate": 0.8
+    },
+    {
+      "path": "BCBACC",
+      "winRate": 0.8
+    },
+    {
+      "path": "BCCBBA",
+      "winRate": 0.8
+    },
+    {
+      "path": "BCCBCC",
+      "winRate": 0.8
+    },
+    {
+      "path": "ABAAAA",
+      "winRate": 0.775
+    },
+    {
+      "path": "ABABBA",
+      "winRate": 0.775
+    },
+    {
+      "path": "ACAACA",
+      "winRate": 0.775
+    },
+    {
+      "path": "ACBACA",
+      "winRate": 0.775
+    },
+    {
+      "path": "ACBBBC",
+      "winRate": 0.775
+    },
+    {
+      "path": "ACCBCA",
+      "winRate": 0.775
+    },
+    {
+      "path": "BAAAAA",
+      "winRate": 0.775
+    },
+    {
+      "path": "BAAAAB",
+      "winRate": 0.775
+    },
+    {
+      "path": "BAAACA",
+      "winRate": 0.775
+    },
+    {
+      "path": "BAAACB",
+      "winRate": 0.775
+    },
+    {
+      "path": "BBABBB",
+      "winRate": 0.775
+    },
+    {
+      "path": "BBBABB",
+      "winRate": 0.775
+    },
+    {
+      "path": "BBCABB",
+      "winRate": 0.775
+    },
+    {
+      "path": "BCAAAA",
+      "winRate": 0.775
+    },
+    {
+      "path": "BCAAAB",
+      "winRate": 0.775
+    },
+    {
+      "path": "BCAACA",
+      "winRate": 0.775
+    },
+    {
+      "path": "BCAACB",
+      "winRate": 0.775
+    },
+    {
+      "path": "BCABAC",
+      "winRate": 0.775
+    },
+    {
+      "path": "BCABBA",
+      "winRate": 0.775
+    },
+    {
+      "path": "BCBBAC",
+      "winRate": 0.775
+    },
+    {
+      "path": "BCCACC",
+      "winRate": 0.775
+    },
+    {
+      "path": "ABABBB",
+      "winRate": 0.75
+    },
+    {
+      "path": "ABCBAA",
+      "winRate": 0.75
+    },
+    {
+      "path": "ACAAAA",
+      "winRate": 0.75
+    },
+    {
+      "path": "ACBABA",
+      "winRate": 0.75
+    },
+    {
+      "path": "ACBABB",
+      "winRate": 0.75
+    },
+    {
+      "path": "ACBACB",
+      "winRate": 0.75
+    },
+    {
+      "path": "ACCBBC",
+      "winRate": 0.75
+    },
+    {
+      "path": "BCBAAC",
+      "winRate": 0.75
+    },
+    {
+      "path": "BCBBCC",
+      "winRate": 0.75
+    },
+    {
+      "path": "BCCABC",
+      "winRate": 0.75
+    },
+    {
+      "path": "ABABAC",
+      "winRate": 0.725
+    },
+    {
+      "path": "ABBBAA",
+      "winRate": 0.725
+    },
+    {
+      "path": "ACAAAC",
+      "winRate": 0.725
+    },
+    {
+      "path": "ACAACC",
+      "winRate": 0.725
+    },
+    {
+      "path": "ACBBCC",
+      "winRate": 0.725
+    },
+    {
+      "path": "BBAABA",
+      "winRate": 0.725
+    },
+    {
+      "path": "BCABCC",
+      "winRate": 0.725
+    },
+    {
+      "path": "BCACBB",
+      "winRate": 0.725
+    },
+    {
+      "path": "BCBABC",
+      "winRate": 0.725
+    },
+    {
+      "path": "BCCAAC",
+      "winRate": 0.725
+    },
+    {
+      "path": "BCCBBC",
+      "winRate": 0.725
+    },
+    {
+      "path": "AAAABA",
+      "winRate": 0.7
+    },
+    {
+      "path": "AAAABB",
+      "winRate": 0.7
+    },
+    {
+      "path": "AAABBA",
+      "winRate": 0.7
+    },
+    {
+      "path": "AAABBB",
+      "winRate": 0.7
+    },
+    {
+      "path": "ABACAC",
+      "winRate": 0.7
+    },
+    {
+      "path": "ABBBAB",
+      "winRate": 0.7
+    },
+    {
+      "path": "ABCBAC",
+      "winRate": 0.7
+    },
+    {
+      "path": "ACAABB",
+      "winRate": 0.7
+    },
+    {
+      "path": "ACBAAC",
+      "winRate": 0.7
+    },
+    {
+      "path": "ACBBAC",
+      "winRate": 0.7
+    },
+    {
+      "path": "BAABBA",
+      "winRate": 0.7
+    },
+    {
+      "path": "BAABBB",
+      "winRate": 0.7
+    },
+    {
+      "path": "BCBBBC",
+      "winRate": 0.7
+    },
+    {
+      "path": "ABAABB",
+      "winRate": 0.675
+    },
+    {
+      "path": "ABCCAC",
+      "winRate": 0.675
+    },
+    {
+      "path": "ACCBCC",
+      "winRate": 0.675
+    },
+    {
+      "path": "BBACAC",
+      "winRate": 0.675
+    },
+    {
+      "path": "BCACAC",
+      "winRate": 0.675
+    },
+    {
+      "path": "BCCCAB",
+      "winRate": 0.675
+    },
+    {
+      "path": "ABAAAC",
+      "winRate": 0.65
+    },
+    {
+      "path": "ABAABA",
+      "winRate": 0.65
+    },
+    {
+      "path": "ACABBC",
+      "winRate": 0.65
+    },
+    {
+      "path": "ACABCC",
+      "winRate": 0.65
+    },
+    {
+      "path": "BBAABB",
+      "winRate": 0.65
+    },
+    {
+      "path": "BBBABC",
+      "winRate": 0.65
+    },
+    {
+      "path": "BBCABC",
+      "winRate": 0.65
+    },
+    {
+      "path": "BCCCCB",
+      "winRate": 0.65
+    },
+    {
+      "path": "ACAABA",
+      "winRate": 0.625
+    },
+    {
+      "path": "ACABAC",
+      "winRate": 0.625
+    },
+    {
+      "path": "ACBCBB",
+      "winRate": 0.625
+    },
+    {
+      "path": "ACCAAB",
+      "winRate": 0.625
+    },
+    {
+      "path": "ACCABB",
+      "winRate": 0.625
+    },
+    {
+      "path": "ACCBAC",
+      "winRate": 0.625
+    },
+    {
+      "path": "BBABBC",
+      "winRate": 0.625
+    },
+    {
+      "path": "BBACBC",
+      "winRate": 0.625
+    },
+    {
+      "path": "BCABBC",
+      "winRate": 0.625
+    },
+    {
+      "path": "BCACAA",
+      "winRate": 0.625
+    },
+    {
+      "path": "AAAACC",
+      "winRate": 0.6
+    },
+    {
+      "path": "ABBAAC",
+      "winRate": 0.6
+    },
+    {
+      "path": "ABCAAC",
+      "winRate": 0.6
+    },
+    {
+      "path": "ACBABC",
+      "winRate": 0.6
+    },
+    {
+      "path": "BBABAC",
+      "winRate": 0.6
+    },
+    {
+      "path": "BBBAAC",
+      "winRate": 0.6
+    },
+    {
+      "path": "BBCAAC",
+      "winRate": 0.6
+    },
+    {
+      "path": "BBCBBC",
+      "winRate": 0.6
+    },
+    {
+      "path": "BCACCA",
+      "winRate": 0.6
+    },
+    {
+      "path": "BCACCC",
+      "winRate": 0.6
+    },
+    {
+      "path": "AAAAAC",
+      "winRate": 0.575
+    },
+    {
+      "path": "ACAABC",
+      "winRate": 0.575
+    },
+    {
+      "path": "BAAABA",
+      "winRate": 0.575
+    },
+    {
+      "path": "BAAABB",
+      "winRate": 0.575
+    },
+    {
+      "path": "BABABC",
+      "winRate": 0.575
+    },
+    {
+      "path": "BACABC",
+      "winRate": 0.575
+    },
+    {
+      "path": "BBAAAC",
+      "winRate": 0.575
+    },
+    {
+      "path": "BBCBBB",
+      "winRate": 0.575
+    },
+    {
+      "path": "BCAAAC",
+      "winRate": 0.575
+    },
+    {
+      "path": "BCAABA",
+      "winRate": 0.575
+    },
+    {
+      "path": "BCAABB",
+      "winRate": 0.575
+    },
+    {
+      "path": "AAABCC",
+      "winRate": 0.55
+    },
+    {
+      "path": "AABBAC",
+      "winRate": 0.55
+    },
+    {
+      "path": "AACBAC",
+      "winRate": 0.55
+    },
+    {
+      "path": "ABACBC",
+      "winRate": 0.55
+    },
+    {
+      "path": "ACCAAC",
+      "winRate": 0.55
+    },
+    {
+      "path": "ACCACB",
+      "winRate": 0.55
+    },
+    {
+      "path": "BABAAC",
+      "winRate": 0.55
+    },
+    {
+      "path": "BABACC",
+      "winRate": 0.55
+    },
+    {
+      "path": "BACAAC",
+      "winRate": 0.55
+    },
+    {
+      "path": "BACACC",
+      "winRate": 0.55
+    },
+    {
+      "path": "BBABAB",
+      "winRate": 0.55
+    },
+    {
+      "path": "BCAACC",
+      "winRate": 0.55
+    },
+    {
+      "path": "BCACBC",
+      "winRate": 0.55
+    },
+    {
+      "path": "BCCCBB",
+      "winRate": 0.55
+    },
+    {
+      "path": "AAABAC",
+      "winRate": 0.525
+    },
+    {
+      "path": "AABBBC",
+      "winRate": 0.525
+    },
+    {
+      "path": "AACBBC",
+      "winRate": 0.525
+    },
+    {
+      "path": "ABBBAC",
+      "winRate": 0.525
+    },
+    {
+      "path": "BBAABC",
+      "winRate": 0.525
+    },
+    {
+      "path": "BBABBA",
+      "winRate": 0.525
+    },
+    {
+      "path": "BBBBAA",
+      "winRate": 0.525
+    },
+    {
+      "path": "BBBBBA",
+      "winRate": 0.525
+    },
+    {
+      "path": "BBBBBB",
+      "winRate": 0.525
+    },
+    {
+      "path": "BBCBAA",
+      "winRate": 0.525
+    },
+    {
+      "path": "BBCBBA",
+      "winRate": 0.525
+    },
+    {
+      "path": "BCBCAC",
+      "winRate": 0.525
+    },
+    {
+      "path": "BCBCCC",
+      "winRate": 0.525
+    },
+    {
+      "path": "AABAAC",
+      "winRate": 0.5
+    },
+    {
+      "path": "AABABC",
+      "winRate": 0.5
+    },
+    {
+      "path": "AABBCC",
+      "winRate": 0.5
+    },
+    {
+      "path": "AACAAC",
+      "winRate": 0.5
+    },
+    {
+      "path": "AACABC",
+      "winRate": 0.5
+    },
+    {
+      "path": "AACBCC",
+      "winRate": 0.5
+    },
+    {
+      "path": "ACBACC",
+      "winRate": 0.5
+    },
+    {
+      "path": "BAABAC",
+      "winRate": 0.5
+    },
+    {
+      "path": "BBABAA",
+      "winRate": 0.5
+    },
+    {
+      "path": "BBBBAB",
+      "winRate": 0.5
+    },
+    {
+      "path": "BBCBAB",
+      "winRate": 0.5
+    },
+    {
+      "path": "BBCCBC",
+      "winRate": 0.5
+    },
+    {
+      "path": "BCCCAC",
+      "winRate": 0.5
+    },
+    {
+      "path": "BCCCCC",
+      "winRate": 0.5
+    },
+    {
+      "path": "AAABBC",
+      "winRate": 0.475
+    },
+    {
+      "path": "ABAABC",
+      "winRate": 0.475
+    },
+    {
+      "path": "ABABBC",
+      "winRate": 0.475
+    },
+    {
+      "path": "BAAAAC",
+      "winRate": 0.475
+    },
+    {
+      "path": "BAABCC",
+      "winRate": 0.475
+    },
+    {
+      "path": "BABBAC",
+      "winRate": 0.475
+    },
+    {
+      "path": "BABBCC",
+      "winRate": 0.475
+    },
+    {
+      "path": "BACBAC",
+      "winRate": 0.475
+    },
+    {
+      "path": "BACBCC",
+      "winRate": 0.475
+    },
+    {
+      "path": "BCBCBC",
+      "winRate": 0.475
+    },
+    {
+      "path": "AAAABC",
+      "winRate": 0.45
+    },
+    {
+      "path": "BAABBC",
+      "winRate": 0.45
+    },
+    {
+      "path": "BABBBC",
+      "winRate": 0.45
+    },
+    {
+      "path": "BACBBC",
+      "winRate": 0.45
+    },
+    {
+      "path": "BCAABC",
+      "winRate": 0.45
+    },
+    {
+      "path": "AABACC",
+      "winRate": 0.425
+    },
+    {
+      "path": "AACACC",
+      "winRate": 0.425
+    },
+    {
+      "path": "ACCABC",
+      "winRate": 0.425
+    },
+    {
+      "path": "ACCABA",
+      "winRate": 0.4
+    },
+    {
+      "path": "BAAACC",
+      "winRate": 0.4
+    },
+    {
+      "path": "BBACBA",
+      "winRate": 0.4
+    },
+    {
+      "path": "BBBBAC",
+      "winRate": 0.4
+    },
+    {
+      "path": "BBBBBC",
+      "winRate": 0.4
+    },
+    {
+      "path": "BBCBAC",
+      "winRate": 0.4
+    },
+    {
+      "path": "BCACBA",
+      "winRate": 0.4
+    },
+    {
+      "path": "ACBCAB",
+      "winRate": 0.375
+    },
+    {
+      "path": "ACBCCB",
+      "winRate": 0.375
+    },
+    {
+      "path": "BAAABC",
+      "winRate": 0.375
+    },
+    {
+      "path": "BCCCBC",
+      "winRate": 0.375
+    },
+    {
+      "path": "ACCAAA",
+      "winRate": 0.325
+    },
+    {
+      "path": "ACCACC",
+      "winRate": 0.325
+    },
+    {
+      "path": "ACBCCC",
+      "winRate": 0.3
+    },
+    {
+      "path": "ACCACA",
+      "winRate": 0.3
+    },
+    {
+      "path": "ABCCAA",
+      "winRate": 0.275
+    },
+    {
+      "path": "ACBCAC",
+      "winRate": 0.275
+    },
+    {
+      "path": "ACBCBC",
+      "winRate": 0.275
+    },
+    {
+      "path": "ABBABB",
+      "winRate": 0.25
+    },
+    {
+      "path": "ABCABB",
+      "winRate": 0.25
+    },
+    {
+      "path": "ABCBBB",
+      "winRate": 0.25
+    },
+    {
+      "path": "ABCCBB",
+      "winRate": 0.25
+    },
+    {
+      "path": "ACBCBA",
+      "winRate": 0.225
+    },
+    {
+      "path": "BBACAB",
+      "winRate": 0.225
+    },
+    {
+      "path": "ABBABA",
+      "winRate": 0.2
+    },
+    {
+      "path": "ABBABC",
+      "winRate": 0.2
+    },
+    {
+      "path": "ABBBBC",
+      "winRate": 0.2
+    },
+    {
+      "path": "ABCBBC",
+      "winRate": 0.2
+    },
+    {
+      "path": "ABCCBC",
+      "winRate": 0.2
+    },
+    {
+      "path": "ABBCAC",
+      "winRate": 0.175
+    },
+    {
+      "path": "ABCABA",
+      "winRate": 0.175
+    },
+    {
+      "path": "ABCABC",
+      "winRate": 0.175
+    },
+    {
+      "path": "ABCCBA",
+      "winRate": 0.175
+    },
+    {
+      "path": "ABCBBA",
+      "winRate": 0.15
+    },
+    {
+      "path": "ABBBBB",
+      "winRate": 0.125
+    },
+    {
+      "path": "ABCCCA",
+      "winRate": 0.125
+    },
+    {
+      "path": "BBBAAA",
+      "winRate": 0.125
+    },
+    {
+      "path": "BBBACA",
+      "winRate": 0.125
+    },
+    {
+      "path": "BBCACA",
+      "winRate": 0.125
+    },
+    {
+      "path": "ABBBBA",
+      "winRate": 0.1
+    },
+    {
+      "path": "BBAACA",
+      "winRate": 0.1
+    },
+    {
+      "path": "ABAACA",
+      "winRate": 0.075
+    },
+    {
+      "path": "ABACCA",
+      "winRate": 0.075
+    },
+    {
+      "path": "ABBBCA",
+      "winRate": 0.075
+    },
+    {
+      "path": "ABBACA",
+      "winRate": 0.05
+    },
+    {
+      "path": "ABCBCA",
+      "winRate": 0.05
+    },
+    {
+      "path": "BBACAA",
+      "winRate": 0.05
+    },
+    {
+      "path": "ABABCA",
+      "winRate": 0.025
+    },
+    {
+      "path": "ABBCBC",
+      "winRate": 0.025
+    },
+    {
+      "path": "ABCACA",
+      "winRate": 0.025
+    },
+    {
+      "path": "ACACAA",
+      "winRate": 0.025
+    },
+    {
+      "path": "ACACAB",
+      "winRate": 0.025
+    },
+    {
+      "path": "ACACBB",
+      "winRate": 0.025
+    },
+    {
+      "path": "ACACBC",
+      "winRate": 0.025
+    },
+    {
+      "path": "BBABCA",
+      "winRate": 0.025
+    },
+    {
+      "path": "BBBBCA",
+      "winRate": 0.025
+    },
+    {
+      "path": "BBCBCA",
+      "winRate": 0.025
+    },
+    {
+      "path": "BBCCBB",
+      "winRate": 0.025
+    },
+    {
+      "path": "AAACAA",
+      "winRate": 0
+    },
+    {
+      "path": "AAACAB",
+      "winRate": 0
+    },
+    {
+      "path": "AAACAC",
+      "winRate": 0
+    },
+    {
+      "path": "AAACBA",
+      "winRate": 0
+    },
+    {
+      "path": "AAACBB",
+      "winRate": 0
+    },
+    {
+      "path": "AAACBC",
+      "winRate": 0
+    },
+    {
+      "path": "AAACCA",
+      "winRate": 0
+    },
+    {
+      "path": "AAACCB",
+      "winRate": 0
+    },
+    {
+      "path": "AAACCC",
+      "winRate": 0
+    },
+    {
+      "path": "AABCAA",
+      "winRate": 0
+    },
+    {
+      "path": "AABCAB",
+      "winRate": 0
+    },
+    {
+      "path": "AABCAC",
+      "winRate": 0
+    },
+    {
+      "path": "AABCBA",
+      "winRate": 0
+    },
+    {
+      "path": "AABCBB",
+      "winRate": 0
+    },
+    {
+      "path": "AABCBC",
+      "winRate": 0
+    },
+    {
+      "path": "AABCCA",
+      "winRate": 0
+    },
+    {
+      "path": "AABCCB",
+      "winRate": 0
+    },
+    {
+      "path": "AABCCC",
+      "winRate": 0
+    },
+    {
+      "path": "AACCAA",
+      "winRate": 0
+    },
+    {
+      "path": "AACCAB",
+      "winRate": 0
+    },
+    {
+      "path": "AACCAC",
+      "winRate": 0
+    },
+    {
+      "path": "AACCBA",
+      "winRate": 0
+    },
+    {
+      "path": "AACCBB",
+      "winRate": 0
+    },
+    {
+      "path": "AACCBC",
+      "winRate": 0
+    },
+    {
+      "path": "AACCCA",
+      "winRate": 0
+    },
+    {
+      "path": "AACCCB",
+      "winRate": 0
+    },
+    {
+      "path": "AACCCC",
+      "winRate": 0
+    },
+    {
+      "path": "ABAACB",
+      "winRate": 0
+    },
+    {
+      "path": "ABAACC",
+      "winRate": 0
+    },
+    {
+      "path": "ABABCB",
+      "winRate": 0
+    },
+    {
+      "path": "ABABCC",
+      "winRate": 0
+    },
+    {
+      "path": "ABACCB",
+      "winRate": 0
+    },
+    {
+      "path": "ABACCC",
+      "winRate": 0
+    },
+    {
+      "path": "ABBACB",
+      "winRate": 0
+    },
+    {
+      "path": "ABBACC",
+      "winRate": 0
+    },
+    {
+      "path": "ABBBCB",
+      "winRate": 0
+    },
+    {
+      "path": "ABBBCC",
+      "winRate": 0
+    },
+    {
+      "path": "ABBCAA",
+      "winRate": 0
+    },
+    {
+      "path": "ABBCAB",
+      "winRate": 0
+    },
+    {
+      "path": "ABBCBA",
+      "winRate": 0
+    },
+    {
+      "path": "ABBCBB",
+      "winRate": 0
+    },
+    {
+      "path": "ABBCCA",
+      "winRate": 0
+    },
+    {
+      "path": "ABBCCB",
+      "winRate": 0
+    },
+    {
+      "path": "ABBCCC",
+      "winRate": 0
+    },
+    {
+      "path": "ABCACB",
+      "winRate": 0
+    },
+    {
+      "path": "ABCACC",
+      "winRate": 0
+    },
+    {
+      "path": "ABCBCB",
+      "winRate": 0
+    },
+    {
+      "path": "ABCBCC",
+      "winRate": 0
+    },
+    {
+      "path": "ABCCCB",
+      "winRate": 0
+    },
+    {
+      "path": "ABCCCC",
+      "winRate": 0
+    },
+    {
+      "path": "ACACAC",
+      "winRate": 0
+    },
+    {
+      "path": "ACACBA",
+      "winRate": 0
+    },
+    {
+      "path": "ACACCA",
+      "winRate": 0
+    },
+    {
+      "path": "ACACCB",
+      "winRate": 0
+    },
+    {
+      "path": "ACACCC",
+      "winRate": 0
+    },
+    {
+      "path": "ACBCAA",
+      "winRate": 0
+    },
+    {
+      "path": "ACBCCA",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCAA",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCAB",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCAC",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCBA",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCBB",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCBC",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCCA",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCCB",
+      "winRate": 0
+    },
+    {
+      "path": "ACCCCC",
+      "winRate": 0
+    },
+    {
+      "path": "BAACAA",
+      "winRate": 0
+    },
+    {
+      "path": "BAACAB",
+      "winRate": 0
+    },
+    {
+      "path": "BAACAC",
+      "winRate": 0
+    },
+    {
+      "path": "BAACBA",
+      "winRate": 0
+    },
+    {
+      "path": "BAACBB",
+      "winRate": 0
+    },
+    {
+      "path": "BAACBC",
+      "winRate": 0
+    },
+    {
+      "path": "BAACCA",
+      "winRate": 0
+    },
+    {
+      "path": "BAACCB",
+      "winRate": 0
+    },
+    {
+      "path": "BAACCC",
+      "winRate": 0
+    },
+    {
+      "path": "BABCAA",
+      "winRate": 0
+    },
+    {
+      "path": "BABCAB",
+      "winRate": 0
+    },
+    {
+      "path": "BABCAC",
+      "winRate": 0
+    },
+    {
+      "path": "BABCBA",
+      "winRate": 0
+    },
+    {
+      "path": "BABCBB",
+      "winRate": 0
+    },
+    {
+      "path": "BABCBC",
+      "winRate": 0
+    },
+    {
+      "path": "BABCCA",
+      "winRate": 0
+    },
+    {
+      "path": "BABCCB",
+      "winRate": 0
+    },
+    {
+      "path": "BABCCC",
+      "winRate": 0
+    },
+    {
+      "path": "BACCAA",
+      "winRate": 0
+    },
+    {
+      "path": "BACCAB",
+      "winRate": 0
+    },
+    {
+      "path": "BACCAC",
+      "winRate": 0
+    },
+    {
+      "path": "BACCBA",
+      "winRate": 0
+    },
+    {
+      "path": "BACCBB",
+      "winRate": 0
+    },
+    {
+      "path": "BACCBC",
+      "winRate": 0
+    },
+    {
+      "path": "BACCCA",
+      "winRate": 0
+    },
+    {
+      "path": "BACCCB",
+      "winRate": 0
+    },
+    {
+      "path": "BACCCC",
+      "winRate": 0
+    },
+    {
+      "path": "BBAACB",
+      "winRate": 0
+    },
+    {
+      "path": "BBAACC",
+      "winRate": 0
+    },
+    {
+      "path": "BBABCB",
+      "winRate": 0
+    },
+    {
+      "path": "BBABCC",
+      "winRate": 0
+    },
+    {
+      "path": "BBACCA",
+      "winRate": 0
+    },
+    {
+      "path": "BBACCB",
+      "winRate": 0
+    },
+    {
+      "path": "BBACCC",
+      "winRate": 0
+    },
+    {
+      "path": "BBBACB",
+      "winRate": 0
+    },
+    {
+      "path": "BBBACC",
+      "winRate": 0
+    },
+    {
+      "path": "BBBBCB",
+      "winRate": 0
+    },
+    {
+      "path": "BBBBCC",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCAA",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCAB",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCAC",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCBA",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCBB",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCBC",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCCA",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCCB",
+      "winRate": 0
+    },
+    {
+      "path": "BBBCCC",
+      "winRate": 0
+    },
+    {
+      "path": "BBCACB",
+      "winRate": 0
+    },
+    {
+      "path": "BBCACC",
+      "winRate": 0
+    },
+    {
+      "path": "BBCBCB",
+      "winRate": 0
+    },
+    {
+      "path": "BBCBCC",
+      "winRate": 0
+    },
+    {
+      "path": "BBCCAA",
+      "winRate": 0
+    },
+    {
+      "path": "BBCCAB",
+      "winRate": 0
+    },
+    {
+      "path": "BBCCAC",
+      "winRate": 0
+    },
+    {
+      "path": "BBCCBA",
+      "winRate": 0
+    },
+    {
+      "path": "BBCCCA",
+      "winRate": 0
+    },
+    {
+      "path": "BBCCCB",
+      "winRate": 0
+    },
+    {
+      "path": "BBCCCC",
+      "winRate": 0
+    },
+    {
+      "path": "BCCCAA",
+      "winRate": 0
+    },
+    {
+      "path": "BCCCBA",
+      "winRate": 0
+    },
+    {
+      "path": "BCCCCA",
+      "winRate": 0
+    }
+  ]
+}
