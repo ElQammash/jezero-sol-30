@@ -294,3 +294,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .gallery-item img { inline-size: 100%; block-size: auto; aspect-ratio: 16 / 9; border-radius: 8px; background: #2a1810; }
 .gallery-item b { font-size: 0.85rem; }
 .help-btn { font-weight: 900; }
+/* while a window (base computer, crisis card) is open, the training card moves to the top so it never covers its buttons */
+.tutorial.top .tut-card { inset-block-end: auto; inset-block-start: 10px; padding: 8px 14px; }
+.tutorial.top .tut-card p { margin: 4px 0 6px; font-size: 0.95rem; }

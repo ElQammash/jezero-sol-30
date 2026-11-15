@@ -148,7 +148,7 @@ export default function Tutorial() {
   if (!cur || screen !== 'play') return null;
   const text = t(`tut.${cur.id}${cur.touchText && touch ? 'Touch' : ''}`);
   return (
-    <div className="tutorial" dir={dir}>
+    <div className={`tutorial ${modal ? 'top' : ''}`} dir={dir}>
       <Pointer rect={rect} />
       <div className="tut-card">
         <small>
