@@ -46,9 +46,14 @@ export function TitleScreen() {
             🚀 {t('title.start')}
           </button>
         </div>
-        <button type="button" className="chip" onClick={() => setAccount(true)}>
-          ☁ {t('account.button')}
-        </button>
+        <div className="row-chips">
+          <button type="button" className="chip" onClick={() => setAccount(true)}>
+            ☁ {t('account.button')}
+          </button>
+          <button type="button" className="chip" onClick={() => (sfx('click'), s.setTutorial(null, false))} aria-pressed={!s.tutorialDone}>
+            🎓 {t('tut.replay')}
+          </button>
+        </div>
         {account && <Account onClose={() => setAccount(false)} />}
         <p className="real-data">🛰 {t('title.realData')}</p>
         <small className="credits">{t('title.credits')}</small>

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { GameState } from '../engine';
+import { dailyGoal } from './goals';
 import type { WorldAction } from './store';
 import { SITES, type SiteId } from './world/Base';
 
@@ -21,6 +22,17 @@ export function spotPosition(id: Spot): THREE.Vector3 {
 /** Where the player should go right now (for the beacon and compass), if anywhere. */
 export function currentTarget(game: GameState, action: WorldAction | null): Spot | null {
   if (action) return action.objective === 'shelter' ? 'airlock' : action.objective === 'reactor' ? 'reactor' : 'garage';
-  if (!game.pendingStage && game.status === 'playing' && game.tasks.length === 0) return 'computer';
+  const goal = dailyGoal(game);
+  if (goal && !goal.done) return 'computer'; // orders are given at the base computer
   return null;
+}
+
+/** A temporary place to walk to (tutorial circle). Set by the tutorial, read by the guides. */
+export const guide = { override: null as THREE.Vector3 | null };
+
+/** Where the player should go right now, as a world position, if anywhere. */
+export function currentTargetPos(game: GameState, action: WorldAction | null): THREE.Vector3 | null {
+  if (guide.override && !action) return guide.override;
+  const s = currentTarget(game, action);
+  return s ? spotPosition(s) : null;
 }

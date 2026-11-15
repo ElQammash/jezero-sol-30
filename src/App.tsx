@@ -7,6 +7,7 @@ import World from './game/World';
 import { SITES, type SiteId } from './game/world/Base';
 import { useWorld } from './game/worldStore';
 import Hud from './ui/Hud';
+import Tutorial from './ui/Tutorial';
 import { Computer, OutcomeModal, StageModal } from './ui/Modals';
 import { EndScreen, Intro, TitleScreen } from './ui/Screens';
 
@@ -93,6 +94,7 @@ export default function App() {
           {modal === 'stage' && game.pendingStage && <StageModal />}
           {modal === 'outcome' && <OutcomeModal />}
           {modal === 'computer' && <Computer />}
+          <Tutorial />
 
         </>
       )}

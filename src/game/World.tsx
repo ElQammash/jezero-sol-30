@@ -8,6 +8,7 @@ import { installInput } from './input';
 import { loadTerrain, type TerrainData } from './terrain';
 import Base, { SITES } from './world/Base';
 import Beacon, { ComputerMarker } from './world/Beacon';
+import GroundPath from './world/GroundPath';
 import Crew from './world/Crew';
 import Dust from './world/Dust';
 import Perseverance from './world/Perseverance';
@@ -79,6 +80,7 @@ export default function World({ game, quality, cinematic, onReady }: Props) {
               <Crew terrain={terrain} game={game} />
               <Beacon terrain={terrain} />
               <ComputerMarker terrain={terrain} />
+              <GroundPath terrain={terrain} />
               <Perseverance terrain={terrain} at={[SITES.robot.x, SITES.robot.z]} yaw={-0.6} />
               {quality !== 'low' && <Dust />}
             </>

@@ -86,6 +86,10 @@ interface Store {
   /** Extra reasons to hold the clock (tutorial steps etc.). */
   holds: number;
   toast: { text: 'morning'; sol: number; id: number } | null;
+  /** First-time training: index of the current step, or null. */
+  tutorialStep: number | null;
+  tutorialDone: boolean;
+  setTutorial: (step: number | null, done?: boolean) => void;
   logOpen: boolean;
   setLang: (l: Lang) => void;
   setGender: (g: Gender) => void;
@@ -166,6 +170,23 @@ export function localUpdatedAt(): number {
 
 const saved = loadSave();
 
+const TUTORIAL_KEY = 'jezero-tutorial-done';
+export function readFlag(key: string): boolean {
+  try {
+    return localStorage.getItem(key) === '1';
+  } catch {
+    return false;
+  }
+}
+export function writeFlag(key: string, on: boolean) {
+  try {
+    if (on) localStorage.setItem(key, '1');
+    else localStorage.removeItem(key);
+  } catch {
+    /* storage blocked */
+  }
+}
+
 export const useGame = create<Store>((set, get) => {
   const after = (patch: Partial<Store>) => {
     set(patch);
@@ -194,6 +215,12 @@ export const useGame = create<Store>((set, get) => {
     holds: 0,
     toast: null,
     logOpen: false,
+    tutorialStep: null,
+    tutorialDone: readFlag(TUTORIAL_KEY),
+    setTutorial: (tutorialStep, done) => {
+      if (done !== undefined) writeFlag(TUTORIAL_KEY, done);
+      set({ tutorialStep, ...(done !== undefined ? { tutorialDone: done } : {}) });
+    },
     setLang: (lang) => after({ lang }),
     setGender: (gender) => after({ gender }),
     setQuality: (quality) => after({ quality }),
@@ -242,7 +269,7 @@ export const useGame = create<Store>((set, get) => {
     },
     clockRunning: () => {
       const s = get();
-      return s.screen === 'play' && s.modal === null && !s.action && !s.game.pendingStage && s.game.status === 'playing' && s.holds === 0 && (s.speed > 0 || s.sleeping);
+      return s.screen === 'play' && s.modal === null && !s.action && !s.game.pendingStage && s.game.status === 'playing' && s.holds === 0 && s.tutorialStep === null && (s.speed > 0 || s.sleeping);
     },
     tick: (dt) => {
       const s = get();
