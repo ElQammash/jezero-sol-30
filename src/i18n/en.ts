@@ -105,6 +105,16 @@ const en = {
       giveOrders: 'give your crew two jobs',
     },
   },
+  crops: {
+    seed: 'Seeds planted',
+    sprout: 'Seedlings',
+    flower: 'Growing',
+    harvest: 'Harvest',
+    harvestIn: 'Harvest in {n} sols',
+    harvesting: 'Harvesting every sol',
+    wilting: 'Wilting! Lights or care missing',
+    note: 'Real potatoes take about 4 months (NASA BVAD). The game speeds this up.',
+  },
   objectives: {
     explore: 'Walk around your colony. Then tap 🖥 (or walk to the computer and press E) to give your crew orders.',
     decide: 'A crisis needs your decision!',

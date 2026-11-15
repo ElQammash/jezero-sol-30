@@ -1,8 +1,11 @@
+import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import type { GameState } from '../../engine';
+import { TUNING } from '../../engine';
 import { heightAt, type TerrainData } from '../terrain';
+import { useT } from '../useT';
 import { panelTexture, solarTexture } from '../textures';
 
 /** Where each part of the colony stands (metres from the landing site). */
@@ -118,6 +121,24 @@ function Placed({ terrain, at, children, rot = 0 }: { terrain: TerrainData; at: 
   );
 }
 
+/** A small marker stone near the habitat for each crewmember who died. */
+function Memorial({ game }: { game: GameState }) {
+  const { t } = useT();
+  const fallen = game.crew.filter((c) => !c.alive);
+  if (!fallen.length) return null;
+  return (
+    <group position={[-12, 0, 16]}>
+      <mesh position={[0, 0.7, 0]} castShadow>
+        <boxGeometry args={[1.4, 1.4, 0.35]} />
+        <meshStandardMaterial color="#6d5a4c" roughness={0.9} />
+      </mesh>
+      <Html position={[0, 2.1, 0]} center distanceFactor={14} zIndexRange={[3, 0]} style={{ pointerEvents: 'none' }}>
+        <div className="memorial">🕯 {fallen.map((c) => t(`names.${c.id}`)).join(' · ')}</div>
+      </Html>
+    </group>
+  );
+}
+
 function Habitat({ m, game }: { m: Mats; game: GameState }) {
   const buried = game.habitat === 'underground' ? (game.buildSolsLeft > 0 ? 1 - game.buildSolsLeft / 3 : 1) : 0;
   const surfaceShield = game.habitat === 'surface' ? Math.max(0, (game.shield - 40) / 60) : 0;
@@ -164,6 +185,20 @@ function Habitat({ m, game }: { m: Mats; game: GameState }) {
         <sphereGeometry args={[0.15, 8, 8]} />
         <meshStandardMaterial color="#ff2a1a" emissive="#ff2a1a" emissiveIntensity={4} />
       </mesh>
+      {/* medbay: a red cross lights up while a patient is being treated */}
+      {game.medical && game.medical.solsLeft > 0 && (
+        <group position={[0, 9.5, 0]}>
+          <mesh>
+            <boxGeometry args={[1.6, 0.45, 0.2]} />
+            <meshStandardMaterial color="#000" emissive="#ff3344" emissiveIntensity={4} />
+          </mesh>
+          <mesh>
+            <boxGeometry args={[0.45, 1.6, 0.2]} />
+            <meshStandardMaterial color="#000" emissive="#ff3344" emissiveIntensity={4} />
+          </mesh>
+          <pointLight color="#ff4455" intensity={12} distance={14} />
+        </group>
+      )}
       {/* regolith piled on the roof (surface habitat) */}
       {surfaceShield > 0.02 && (
         <mesh material={m.regolith} position={[0, 4.2, 0]} scale={[1, 0.35 + surfaceShield * 0.65, 1]} castShadow>
@@ -219,8 +254,29 @@ function Greenhouse({ m, game }: { m: Mats; game: GameState }) {
             );
           }),
         )}
-      {active && <mesh material={m.growLight} position={[0, 4.5, 0]}><torusGeometry args={[3, 0.08, 6, 30]} /></mesh>}
+      {active && game.settings.greenhouseOn && <mesh material={m.growLight} position={[0, 4.5, 0]}><torusGeometry args={[3, 0.08, 6, 30]} /></mesh>}
+      {active && <CropBadge game={game} />}
     </group>
+  );
+}
+
+/** Harvest countdown over the farm, with the honest note about real growing times. */
+function CropBadge({ game }: { game: GameState }) {
+  const { t, n } = useT();
+  const left = Math.max(0, Math.ceil(TUNING.greenhouseRampSols - game.greenhouseAge));
+  const wilting = game.greenhouseHealth < 0.6 || !game.settings.greenhouseOn;
+  const stage = game.greenhouseAge < 1.5 ? 'seed' : game.greenhouseAge < TUNING.greenhouseRampSols * 0.6 ? 'sprout' : left > 0 ? 'flower' : 'harvest';
+  return (
+    <Html position={[0, 8.2, 0]} center distanceFactor={22} zIndexRange={[3, 0]} style={{ pointerEvents: 'none' }}>
+      <div className={`crop-badge ${wilting ? 'wilt' : ''}`}>
+        <b>
+          {stage === 'seed' ? '🌰' : stage === 'sprout' ? '🌱' : stage === 'flower' ? '🌿' : '🥔'} {t(`crops.${stage}`)}
+        </b>
+        <small>{left > 0 ? t('crops.harvestIn', { n: n(left) }) : t('crops.harvesting')}</small>
+        {wilting && <small className="bad">{t('crops.wilting')}</small>}
+        <em>{t('crops.note')}</em>
+      </div>
+    </Html>
   );
 }
 
@@ -246,17 +302,23 @@ function SolarField({ m, game }: { m: Mats; game: GameState }) {
   );
 }
 
-function Comms({ m }: { m: Mats }) {
+function Comms({ m, damaged }: { m: Mats; damaged: boolean }) {
   const dish = useRef<THREE.Group>(null);
-  useFrame((_, dt) => {
-    if (dish.current) dish.current.rotation.y += dt * 0.05;
+  const warn = useRef<THREE.MeshStandardMaterial>(null);
+  useFrame(({ clock }, dt) => {
+    if (dish.current && !damaged) dish.current.rotation.y += dt * 0.05;
+    if (warn.current) warn.current.emissiveIntensity = damaged && Math.sin(clock.elapsedTime * 6) > 0 ? 5 : 0.2;
   });
   return (
     <group>
       <mesh material={m.frame} position={[0, 3, 0]}>
         <cylinderGeometry args={[0.18, 0.3, 6, 8]} />
       </mesh>
-      <group ref={dish} position={[0, 6.2, 0]}>
+      <mesh position={[0, 6.1, 0]}>
+        <sphereGeometry args={[0.16, 8, 8]} />
+        <meshStandardMaterial ref={warn} color="#000" emissive="#ff2a1a" emissiveIntensity={0.2} />
+      </mesh>
+      <group ref={dish} position={[0, 6.2, 0]} rotation={damaged ? [0.7, 0.4, 0.5] : [0, 0, 0]}>
         <mesh material={m.hull} rotation={[-0.9, 0, 0]} castShadow>
           <sphereGeometry args={[2.2, 32, 10, 0, Math.PI * 2, 0, 0.6]} />
         </mesh>
@@ -418,6 +480,7 @@ function Reactor({ m, game }: { m: Mats; game: GameState }) {
         <sphereGeometry args={[0.12, 8, 8]} />
         <meshStandardMaterial color="#000" emissive={game.reactorOn ? '#3cff7a' : '#ff8a2a'} emissiveIntensity={4} />
       </mesh>
+      {game.reactorOn && <pointLight position={[0, 5, 0]} color="#7dffb0" intensity={40} distance={22} />}
     </group>
   );
 }
@@ -593,6 +656,9 @@ function Lab({ m }: { m: Mats }) {
   );
 }
 
+/** Where the rover broke down on its way to the supply cache. */
+const ABANDONED = new THREE.Vector3(58, 0, -62);
+
 export default function Base({ terrain, game }: { terrain: TerrainData; game: GameState }) {
   const m = useMaterials();
   // dim the windows when life support is short of power
@@ -605,7 +671,7 @@ export default function Base({ terrain, game }: { terrain: TerrainData; game: Ga
       <Placed terrain={terrain} at={SITES.solar} rot={0.05}><SolarField m={m} game={game} /></Placed>
       <Placed terrain={terrain} at={SITES.power}><PowerHub m={m} game={game} /></Placed>
       <Placed terrain={terrain} at={SITES.moxie}><Moxie m={m} game={game} /></Placed>
-      <Placed terrain={terrain} at={SITES.comms}><Comms m={m} /></Placed>
+      <Placed terrain={terrain} at={SITES.comms}><Comms m={m} damaged={game.commsDamaged} /></Placed>
       <Placed terrain={terrain} at={SITES.lander}><Lander m={m} /></Placed>
       <Placed terrain={terrain} at={SITES.garage}><Garage m={m} game={game} /></Placed>
       <Placed terrain={terrain} at={SITES.iceDrill}><IceDrill m={m} game={game} /></Placed>
@@ -615,6 +681,17 @@ export default function Base({ terrain, game }: { terrain: TerrainData; game: Ga
       {TUNNELS.map(([a, b, ra, rb]) => (
         <Tunnel key={a + b} m={m} terrain={terrain} a={SITES[a]} b={SITES[b]} ra={ra} rb={rb} />
       ))}
+      {game.rover === 'lost' && (
+        <Placed terrain={terrain} at={ABANDONED} rot={0.9}>
+          <group rotation={[0.12, 0, 0.18]}>
+            <Rover m={m} />
+          </group>
+          <Html position={[0, 3.6, 0]} center distanceFactor={20} zIndexRange={[3, 0]} style={{ pointerEvents: 'none' }}>
+            <div className="memorial">🚙✕</div>
+          </Html>
+        </Placed>
+      )}
+      <Placed terrain={terrain} at={SITES.habitat}><Memorial game={game} /></Placed>
       <Rocks terrain={terrain} />
     </group>
   );

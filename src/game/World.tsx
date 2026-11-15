@@ -1,9 +1,11 @@
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 import { Bloom, EffectComposer, SMAA, Vignette } from '@react-three/postprocessing';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
-import type { GameState } from '../engine';
+import { solPreview, type GameState } from '../engine';
+import { useGame } from './store';
+import { liveVisual } from './visual';
 import { installInput } from './input';
 import { loadTerrain, type TerrainData } from './terrain';
 import Base, { SITES } from './world/Base';
@@ -36,6 +38,16 @@ interface Props {
 export default function World({ game, quality, cinematic, onReady }: Props) {
   const [terrain, setTerrain] = useState<TerrainData | null>(null);
   const wrap = useRef<HTMLDivElement>(null);
+  // the world changes as the crew work: blend toward this sol's engine result (40 steps a sol)
+  const step = useGame((s) => (s.screen === 'play' ? Math.floor(s.clock * 40) : 0));
+  const preview = useMemo(() => {
+    try {
+      return solPreview(game);
+    } catch {
+      return null;
+    }
+  }, [game]);
+  const visual = useMemo(() => liveVisual(game, step / 40, preview), [game, step, preview]);
 
   useEffect(() => {
     loadTerrain().then(setTerrain);
@@ -75,7 +87,7 @@ export default function World({ game, quality, cinematic, onReady }: Props) {
           {terrain && (
             <>
               <Terrain data={terrain} />
-              <Base terrain={terrain} game={game} />
+              <Base terrain={terrain} game={visual} />
               <Player terrain={terrain} cinematic={cinematic} />
               <Crew terrain={terrain} game={game} />
               <Beacon terrain={terrain} />

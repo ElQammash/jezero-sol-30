@@ -89,4 +89,4 @@ export function installInput(el: HTMLElement): () => void {
   };
 }
 
-if (import.meta.env.DEV) (window as unknown as { __input: typeof input }).__input = input;
+if (import.meta.env.DEV && typeof window !== 'undefined') (window as unknown as { __input: typeof input }).__input = input;

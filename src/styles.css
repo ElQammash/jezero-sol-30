@@ -266,3 +266,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .tut-card { inset-block-end: 150px; }
 }
 .row-chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- crew tags, crops, memorial ---------- */
+.crew-tag { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 3px 8px; border-radius: 9px; background: rgba(20,11,8,0.78); border: 1px solid var(--edge); color: var(--text); font-size: 15px; white-space: nowrap; font-family: inherit; }
+.crew-tag.busy { border-color: var(--ok); }
+.crew-tag small { font-size: 12px; color: var(--muted); }
+.crew-tag .pbar { inline-size: 70px; }
+.crop-badge { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 10px; border-radius: 12px; background: rgba(20,11,8,0.82); border: 1px solid var(--ok); color: var(--text); font-size: 13px; inline-size: 200px; text-align: center; }
+.crop-badge.wilt { border-color: var(--danger); }
+.crop-badge small.bad { color: var(--danger); font-weight: 700; }
+.crop-badge em { font-size: 10px; color: var(--muted); font-style: normal; line-height: 1.25; }
+.memorial { padding: 3px 8px; border-radius: 8px; background: rgba(20,11,8,0.8); color: var(--text); font-size: 12px; white-space: nowrap; }
+.task .who { display: block; font-style: normal; font-size: 0.72rem; color: var(--ok); margin-top: 3px; }

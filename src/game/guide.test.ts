@@ -53,3 +53,24 @@ describe('ground path', () => {
       }
   });
 });
+
+import { assignJobs, jobProgress } from './crewJobs';
+describe('crew jobs', () => {
+  it('gives each order to a different able crewmember, by role', () => {
+    const s = setTasks(chooseOption(createMission(4), 'A').state, ['cleanPanels', 'pileRegolith']);
+    const jobs = assignJobs(s);
+    expect(jobs.cleanPanels).toBe('engineer');
+    expect(jobs.pileRegolith).toBe('geologist');
+  });
+  it('skips sick crew and never gives two jobs to one person', () => {
+    let s = setTasks(chooseOption(createMission(4), 'A').state, ['cleanPanels', 'maintain']);
+    s = { ...s, crew: s.crew.map((c) => (c.id === 'engineer' ? { ...c, condition: 'sick' as const } : c)) };
+    const jobs = assignJobs(s);
+    expect(jobs.cleanPanels).toBe('pilot');
+    expect(jobs.maintain).toBe('geologist');
+  });
+  it('progress runs from 0 to 1 during the working hours', () => {
+    expect(jobProgress(0)).toBe(0);
+    expect(jobProgress(0.99)).toBe(1);
+  });
+});
