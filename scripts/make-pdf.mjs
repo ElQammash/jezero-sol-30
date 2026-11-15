@@ -23,6 +23,6 @@ a { color: #b4471b; text-decoration: none; word-break: break-word; }
 const b = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new' });
 const pg = await b.newPage();
 await pg.setContent(html, { waitUntil: 'load' });
-await pg.pdf({ path: out, format: 'A4', printBackground: true, displayHeaderFooter: true, headerTemplate: '<span></span>', footerTemplate: '<div style="font-size:8px;width:100%;text-align:center;color:#999">Jezero: Sol 30 · Team AstraQuest · Rowina · <span class="pageNumber"></span></div>', margin: { top: '15mm', bottom: '15mm', left: '13mm', right: '13mm' } });
+await pg.pdf({ path: out, format: 'A4', printBackground: true, displayHeaderFooter: true, headerTemplate: '<span></span>', footerTemplate: '<div style="font-size:8px;width:100%;text-align:center;color:#999">Jezero: Sol 30 · Team AstraQuest · Malak Tamer Said Ahmad &amp; Rowina Walid Abdul Rahman · <span class="pageNumber"></span></div>', margin: { top: '15mm', bottom: '15mm', left: '13mm', right: '13mm' } });
 await b.close();
 console.log('wrote', out);

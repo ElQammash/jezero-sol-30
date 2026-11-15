@@ -1,6 +1,6 @@
 # Jezero: Sol 30 🪐
 
-**A 3D Mars colony survival game built on real NASA data. Team AstraQuest (Rowina), NASA Space Apps Challenge 2026.**
+**A 3D Mars colony survival game built on real NASA data. Team AstraQuest: Malak Tamer Said Ahmad (team owner) and Rowina Walid Abdul Rahman, NASA Space Apps Challenge 2026.**
 
 Year 2038. You command the first human colony on Mars, in the real Jezero crater. Six crew, thirty sols, six linked crises. Keep Power, Oxygen, Food and Shield up, and every decision you make will show in the world.
 

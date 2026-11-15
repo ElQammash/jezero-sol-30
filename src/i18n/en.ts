@@ -14,7 +14,7 @@ const en = {
     low: 'Low',
     medium: 'Medium',
     high: 'High',
-    credits: 'Team AstraQuest · Rowina · NASA Space Apps Challenge 2026',
+    credits: 'Team AstraQuest · Malak Tamer Said Ahmad & Rowina Walid Abdul Rahman · NASA Space Apps Challenge 2026',
     realData: 'The ground you walk on is the real Jezero crater, built from NASA HiRISE terrain data.',
   },
   intro: [

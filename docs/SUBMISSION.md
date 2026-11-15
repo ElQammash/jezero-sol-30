@@ -2,7 +2,7 @@
 
 Copy each section into the matching field of the Space Apps project submission form, in this order.
 
-**Team:** AstraQuest · **Members:** Rowina · **Challenge:** Build a Junior Astronaut Mission Trainer
+**Team:** AstraQuest · **Team members:** Malak Tamer Said Ahmad (team owner), Rowina Walid Abdul Rahman · **Challenge:** Build a Junior Astronaut Mission Trainer
 
 ---
 

@@ -3,7 +3,7 @@
 Decisions taken without asking, chosen for a 10–14-year-old player and a NASA judge.
 
 1. **Demo link** is the PDF on our own website (`/demo/Jezero-Sol-30-Demo.pdf`), which needs no login. The GitHub copy is a mirror.
-2. **Team members on the deck:** only "Rowina" was given so far. The name is in one place in `docs/demo/deck.html` (`#members`).
+2. **Team members:** Malak Tamer Said Ahmad (team owner) and Rowina Walid Abdul Rahman, as given by the team. They appear in the game credits, both decks, the docs and the submission text.
 3. **Submission text describes only what has actually shipped.** Each phase updates it when its feature is merged.
 4. **Real-time sol length:** 180 real seconds per sol at 1×, with 75% of that in daylight (the night passes faster). The engine still settles each sol in one `endSol()` step. The HUD and the world blend toward `solPreview()`, so the balance analysis is unchanged.
 5. **Crew orders go to a named person by role, chosen automatically.** Cleaning goes to Lina, the engineer; regolith to Yusuf, the geologist; the farm to Omar, the botanist; rest to Sara, the doctor. Healthy crew come first. The base computer shows who will do each job. Letting the player pick the person would need engine changes and a new balance pass, and the effect is the same for a 10-year-old. Role affinity is visual only, so the 486-path balance stays valid.

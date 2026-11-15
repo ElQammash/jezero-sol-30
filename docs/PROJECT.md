@@ -1,6 +1,6 @@
 # Jezero: Sol 30 — Project Documentation
 
-**Team:** AstraQuest · **Students:** Rowina
+**Team:** AstraQuest · **Team members:** Malak Tamer Said Ahmad (team owner), Rowina Walid Abdul Rahman
 **Event:** NASA Space Apps Challenge 2026 · **Challenge:** Build a Junior Astronaut Mission Trainer
 **Play (browser, no install):** https://mistyrose-eland-246079.hostingersite.com/
 **Source code:** https://github.com/ElQammash/jezero-sol-30
