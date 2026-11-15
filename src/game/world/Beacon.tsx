@@ -2,7 +2,7 @@ import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
-import { currentTarget, spotPosition } from '../spots';
+import { currentTargetPos, spotPosition } from '../spots';
 import { useGame } from '../store';
 import { heightAt, type TerrainData } from '../terrain';
 
@@ -10,7 +10,9 @@ import { heightAt, type TerrainData } from '../terrain';
 export default function Beacon({ terrain }: { terrain: TerrainData }) {
   const game = useGame((s) => s.game);
   const action = useGame((s) => s.action);
-  const target = currentTarget(game, action);
+  const target = currentTargetPos(game, action);
+  const tutStep = useGame((s) => s.tutorialStep);
+  void tutStep;
   const ring = useRef<THREE.Mesh>(null);
   const beam = useRef<THREE.Mesh>(null);
   const mats = useMemo(
@@ -30,7 +32,7 @@ export default function Beacon({ terrain }: { terrain: TerrainData }) {
     if (beam.current) mats.beam.opacity = 0.16 + Math.sin(t * 3) * 0.05;
   });
   if (!target) return null;
-  const p = spotPosition(target);
+  const p = target;
   const urgent = action?.objective === 'shelter';
   mats.beam.color.set(urgent ? '#ff5a4a' : '#7fd8ff');
   mats.ring.color.set(urgent ? '#ff5a4a' : '#7fd8ff');

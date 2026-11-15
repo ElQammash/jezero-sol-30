@@ -3,9 +3,10 @@ import { liveMeters, meters, solPreview, solsLeft, STAGE_ORDER, type GameState, 
 import { METER_SOURCES } from '../game/facts';
 import { input, setTouchMove } from '../game/input';
 import { sfx } from '../game/sound';
-import { currentTarget, SPOTS, spotPosition, type Spot } from '../game/spots';
+import { currentTargetPos, SPOTS, spotPosition, type Spot } from '../game/spots';
 import { marsClock, secondsLeft, useGame, type Speed } from '../game/store';
 import { causeText } from './Modals';
+import { dailyGoal } from '../game/goals';
 import { useT } from '../game/useT';
 import { useWorld } from '../game/worldStore';
 import SourceButton from './SourceButton';
@@ -160,6 +161,35 @@ function MissionLog({ game, now, target }: { game: GameState; now: Meters; targe
   );
 }
 
+/** Today's goal, picked from what the colony needs most. */
+function GoalPill({ game }: { game: GameState }) {
+  const { t } = useT();
+  const goal = dailyGoal(game);
+  const [flash, setFlash] = useState(false);
+  const was = useRef<boolean | null>(null);
+  useEffect(() => {
+    if (!goal) return;
+    if (was.current === false && goal.done) {
+      sfx('confirm');
+      setFlash(true);
+      setTimeout(() => setFlash(false), 2500);
+    }
+    was.current = goal.done;
+  }, [goal?.done, goal]);
+  if (!goal) return null;
+  const params = { ...(goal.params ?? {}) };
+  if (typeof params.who === 'string') params.who = t(`names.${params.who}`);
+  return (
+    <button type="button" className={`goal-pill ${goal.done ? 'done' : ''} ${flash ? 'flash' : ''}`} onClick={() => !goal.done && (sfx('click'), useGame.getState().openModal('computer'))}>
+      <span className="g-icon">{goal.done ? '✅' : '🎯'}</span>
+      <span>
+        <small>{goal.done ? t('goals.done') : t('goals.today')}</small>
+        {t(`goals.${goal.reason}`, params)}: {t(`goals.do.${goal.id}`)}
+      </span>
+    </button>
+  );
+}
+
 function Toast() {
   const { t } = useT();
   const toast = useGame((s) => s.toast);
@@ -275,9 +305,8 @@ export default function Hud() {
         navTick = 0;
         const cp = spotPosition('computer');
         setCompDist(Math.round(Math.hypot(cp.x - p.x, cp.z - p.z)));
-        const target = currentTarget(st.game, a);
-        if (target) {
-          const c = spotPosition(target);
+        const c = currentTargetPos(st.game, a);
+        if (c) {
           const dx = c.x - p.x;
           const dz = c.z - p.z;
           // angle relative to where the camera looks (forward = -sin(yaw), -cos(yaw))
@@ -352,6 +381,7 @@ export default function Hud() {
         </div>
       )}
 
+      <GoalPill game={game} />
       <CrewColumn game={game} />
 
       {/* objective: an icon that opens into a card */}
