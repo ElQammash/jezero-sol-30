@@ -7,6 +7,8 @@ import type { GameState } from '../engine';
 import { installInput } from './input';
 import { loadTerrain, type TerrainData } from './terrain';
 import Base from './world/Base';
+import Beacon from './world/Beacon';
+import Crew from './world/Crew';
 import Lighting from './world/Lighting';
 import Player from './world/Player';
 import Sky from './world/Sky';
@@ -72,6 +74,8 @@ export default function World({ game, quality, cinematic, onReady }: Props) {
               <Terrain data={terrain} />
               <Base terrain={terrain} game={game} />
               <Player terrain={terrain} cinematic={cinematic} />
+              <Crew terrain={terrain} game={game} />
+              <Beacon terrain={terrain} />
             </>
           )}
           {quality !== 'low' && (

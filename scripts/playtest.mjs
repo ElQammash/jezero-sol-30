@@ -83,9 +83,17 @@ for (let step = 0; step < 200; step++) {
   // in-world action pending? (should not happen with non-world choices)
   const hasEnd = await click('.bottom-actions .btn.primary');
   if (!hasEnd) {
-    const obj = await page.evaluate(() => document.querySelector('.objective span')?.textContent);
-    log.push('waiting: ' + obj);
-    await sleep(500);
+    const obj = await page.evaluate(() => document.querySelector('.objective span')?.textContent ?? '');
+    // in-world action: walk (teleport, dev only) to the spot and press E
+    const spot = /reactor/i.test(obj) ? [-170, 145] : /garage/i.test(obj) ? [10, -19.2] : /airlock/i.test(obj) ? [0, 9.6] : null;
+    if (spot) {
+      log.push('  in-world: ' + obj);
+      await page.evaluate(([x, z]) => window.__world.getState().player.set(x, 0, z), spot);
+      await sleep(400);
+      await page.keyboard.press('KeyE');
+      await sleep(400);
+    } else log.push('waiting: ' + obj);
+    await sleep(300);
   }
   await sleep(450);
 }

@@ -1,27 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
+
 import { meters, solsLeft, STAGE_ORDER, type GameState } from '../engine';
 import { METER_SOURCES } from '../game/facts';
 import { input, setTouchMove } from '../game/input';
 import { sfx } from '../game/sound';
 import { useGame } from '../game/store';
 import { useT } from '../game/useT';
-import { SITES, type SiteId } from '../game/world/Base';
+import { SPOTS, spotPosition, type Spot } from '../game/spots';
 import { useWorld } from '../game/worldStore';
 import SourceButton from './SourceButton';
-
-type Spot = 'computer' | 'airlock' | 'reactor' | 'garage';
-const SPOTS: { id: Spot; site: SiteId; offset: [number, number]; radius: number }[] = [
-  { id: 'computer', site: 'tower', offset: [0, 4.4], radius: 3 },
-  { id: 'airlock', site: 'habitat', offset: [0, 9.6], radius: 3.2 },
-  { id: 'reactor', site: 'reactor', offset: [0, 5], radius: 4 },
-  { id: 'garage', site: 'garage', offset: [0, 4.8], radius: 3.5 },
-];
-export function spotPosition(id: Spot): THREE.Vector3 {
-  const s = SPOTS.find((x) => x.id === id)!;
-  const c = SITES[s.site];
-  return new THREE.Vector3(c.x + s.offset[0], 0, c.z + s.offset[1]);
-}
 
 const ICON = { power: '⚡', oxygen: '🫁', food: '🥔', shield: '🛡️' } as const;
 
